@@ -30,11 +30,14 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-4">
-      <Button size="sm">Small</Button>
-      <Button size="default">Medium</Button>
-      <Button size="lg">Large</Button>
-    </div>
+    <>
+      <div className="flex gap-4">
+        <Button size="sm">Small</Button>
+        <Button size="default">Medium</Button>
+        <Button size="lg">Large</Button>
+      </div>
+      <Button size={null}>Null</Button>
+    </>
   ),
 };
 
@@ -49,7 +52,7 @@ export const WithIcon: Story = {
 export const Loading: Story = {
   render: () => (
     <Button disabled>
-      <LuLoader2 className="animate-spin mr-2 h-4 w-4" />
+      <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
       Please wait...
     </Button>
   ),

@@ -53,7 +53,8 @@
       "plugin:storybook/recommended"
     ]
   },
-  "prettierConfig": {
+  "prettier": {
+    "printWidth": 120,
     "plugins": [
       "prettier-plugin-tailwindcss"
     ]

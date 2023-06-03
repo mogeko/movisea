@@ -12,6 +12,7 @@
     "build-storybook": "storybook build -s ./public"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "next": "13.4.4",

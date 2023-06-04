@@ -9,7 +9,7 @@ type Story = StoryObj<typeof Separator>;
 
 export const Default: Story = {};
 
-export const Demo: Story = {
+export const Demo1: Story = {
   render: (_args) => (
     <div>
       <div className="space-y-1">

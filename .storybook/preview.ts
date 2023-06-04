@@ -2,7 +2,7 @@ import type { Preview, Parameters } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-styling";
 import * as NextImage from "next/image";
 
-import "../styles/globals.css";
+import "@/styles/globals.css";
 
 const OriginalNextImage = NextImage.default;
 

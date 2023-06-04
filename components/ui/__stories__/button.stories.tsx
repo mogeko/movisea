@@ -5,9 +5,6 @@ import { Button } from "@/components/ui/button";
 export default {
   title: "Components/Button",
   component: Button,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
 } as Meta;
 type Story = StoryObj<typeof Button>;
 
@@ -53,20 +50,23 @@ export const Link: Story = {
 };
 
 export const WithIcon: Story = {
-  render: () => (
-    <Button>
+  render: (args) => (
+    <Button {...args}>
       <LuMail className="mr-2 h-4 w-4" /> Login with Email
     </Button>
   ),
 };
 
 export const Loading: Story = {
-  render: () => (
-    <Button disabled>
+  render: (args) => (
+    <Button {...args}>
       <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
       Please wait...
     </Button>
   ),
+  args: {
+    disabled: true,
+  },
 };
 
 export const OutsideSite: Story = {

@@ -6,14 +6,6 @@ import { Button } from "@/components/ui/button";
 export default {
   title: "Components/Input",
   component: Input,
-} as Meta;
-type Story = StoryObj<typeof Input>;
-
-export const Default: Story = {
-  args: {
-    placeholder: "Email",
-    type: "email",
-  },
   argTypes: {
     type: {
       options: [
@@ -41,13 +33,22 @@ export const Default: Story = {
       control: { type: "boolean" },
     },
   },
+} as Meta;
+type Story = StoryObj<typeof Input>;
+
+export const Default: Story = {
+  args: {
+    placeholder: "Email",
+    type: "email",
+  },
 };
 
 export const WithButton: Story = {
-  render: () => (
+  render: (args) => (
     <div className="flex w-full max-w-sm items-center space-x-2">
-      <Input type="email" placeholder="Email" />
+      <Input {...args} />
       <Button type="submit">Subscribe</Button>
     </div>
   ),
+  args: Default.args,
 };

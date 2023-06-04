@@ -1,5 +1,7 @@
 import type { Preview, Parameters } from "@storybook/react";
+import { withThemeByClassName } from "@storybook/addon-styling";
 import * as NextImage from "next/image";
+
 import "../styles/globals.css";
 
 const OriginalNextImage = NextImage.default;
@@ -26,5 +28,15 @@ export const parameters: Parameters = {
     appDirectory: true,
   },
 };
+
+export const decorators = [
+  withThemeByClassName({
+    themes: {
+      light: "light",
+      dark: "dark",
+    },
+    defaultTheme: "light",
+  }),
+];
 
 export default preview;

@@ -1,44 +1,55 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LuMail, LuLoader2 } from "react-icons/lu";
+import { LuMail, LuLoader2, LuArrowUpRight } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 
 export default {
   title: "Components/Button",
   component: Button,
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 } as Meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
-    children: "Button",
-    variant: "default",
+    children: "Primary",
   },
 };
 
-export const Variants: Story = {
-  render: () => (
-    <div className="flex gap-4">
-      <Button variant="default">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
-    </div>
-  ),
+export const Secondary: Story = {
+  args: {
+    children: "Secondary",
+    variant: "secondary",
+  },
 };
 
-export const Sizes: Story = {
-  render: () => (
-    <>
-      <div className="flex gap-4">
-        <Button size="sm">Small</Button>
-        <Button size="default">Medium</Button>
-        <Button size="lg">Large</Button>
-      </div>
-      <Button size={null}>Null</Button>
-    </>
-  ),
+export const Destructive: Story = {
+  args: {
+    children: "Destructive",
+    variant: "destructive",
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    children: "Outline",
+    variant: "outline",
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    children: "Ghost",
+    variant: "ghost",
+  },
+};
+
+export const Link: Story = {
+  args: {
+    children: "Link",
+    variant: "link",
+  },
 };
 
 export const WithIcon: Story = {
@@ -56,4 +67,15 @@ export const Loading: Story = {
       Please wait...
     </Button>
   ),
+};
+
+export const OutsideSite: Story = {
+  render: (args) => (
+    <Button {...args}>
+      RARBG <LuArrowUpRight className="ml-2 h-4 w-4" />
+    </Button>
+  ),
+  args: {
+    variant: "link",
+  },
 };

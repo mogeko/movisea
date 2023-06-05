@@ -9,10 +9,10 @@ export default {
 type Story = StoryObj<typeof Label>;
 
 export const Default: Story = {
-  render: (args) => (
+  render: ({ htmlFor, ...props }) => (
     <div className="w-[500px]">
-      <Label {...args} />
-      <Input type="email" name={args.htmlFor} className="mt-1" />
+      <Label htmlFor={htmlFor} {...props} />
+      <Input type="email" name={htmlFor} className="mt-1" />
     </div>
   ),
   args: {

@@ -76,6 +76,8 @@ export const OutsideSite: Story = {
     </Button>
   ),
   args: {
-    variant: "link",
+    className: "rounded-full border-4 border-primary",
+    variant: "outline",
+    size: "sm",
   },
 };

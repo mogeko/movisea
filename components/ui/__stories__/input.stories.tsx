@@ -25,6 +25,7 @@ export default {
         "number",
         "range",
         "hidden",
+        "search",
       ],
       control: { type: "select" },
     },
@@ -37,8 +38,8 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Email",
-    type: "email",
+    placeholder: "Search...",
+    type: "search",
   },
 };
 
@@ -49,5 +50,8 @@ export const WithButton: Story = {
       <Button type="submit">Subscribe</Button>
     </div>
   ),
-  args: Default.args,
+  args: {
+    placeholder: "Email address",
+    type: "email",
+  },
 };

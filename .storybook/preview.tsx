@@ -40,10 +40,10 @@ export const decorators = [
     defaultTheme: "light",
   }),
   (Story) => (
-    <main className="bg-background">
+    <>
       <Story />
       <Toaster />
-    </main>
+    </>
   ),
 ];
 

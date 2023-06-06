@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { LuBellRing, LuCheck } from "react-icons/lu";
+
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
 
 export default {
   title: "Components/shadcn-ui/Card",

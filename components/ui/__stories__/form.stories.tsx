@@ -1,6 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,10 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import React from "react";
 
 export default {
   title: "Components/shadcn-ui/Form",

@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import "@/.storybook/stubs/next-image";
 
 import * as React from "react";
-import type { Parameters, Decorator } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-styling";
+import type { Decorator, Parameters } from "@storybook/react";
+
 import { Toaster } from "@/components/toaster";
 
 export const parameters: Parameters = {

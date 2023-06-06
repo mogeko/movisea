@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LuMail, LuLoader2 } from "react-icons/lu";
+import { LuLoader2, LuMail } from "react-icons/lu";
+
 import { Button } from "@/components/ui/button";
 
 export default {

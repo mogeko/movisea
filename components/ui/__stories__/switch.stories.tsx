@@ -3,7 +3,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 export default {
-  title: "Components/Switch",
+  title: "Components/shadcn-ui/Switch",
   component: Switch,
 } as Meta;
 type Story = StoryObj<typeof Switch>;

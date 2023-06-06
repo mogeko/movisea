@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
 export default {
-  title: "Components/Input",
+  title: "Components/shadcn-ui/Input",
   component: Input,
   argTypes: {
     type: {

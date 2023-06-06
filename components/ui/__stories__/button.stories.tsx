@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LuMail, LuLoader2, LuArrowUpRight } from "react-icons/lu";
+import { LuMail, LuLoader2 } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 
 export default {
-  title: "Components/Button",
+  title: "Components/shadcn-ui/Button",
   component: Button,
 } as Meta;
 type Story = StoryObj<typeof Button>;

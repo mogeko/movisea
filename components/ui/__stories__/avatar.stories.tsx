@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export default {
-  title: "Components/Avatar",
+  title: "Components/shadcn-ui/Avatar",
   component: Avatar,
 } as Meta;
 type Story = StoryObj<typeof Avatar>;

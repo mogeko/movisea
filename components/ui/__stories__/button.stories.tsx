@@ -68,16 +68,3 @@ export const Loading: Story = {
     disabled: true,
   },
 };
-
-export const OutsideSite: Story = {
-  render: (args) => (
-    <Button {...args}>
-      RARBG <LuArrowUpRight className="ml-2 h-4 w-4" />
-    </Button>
-  ),
-  args: {
-    className: "rounded-full border-4 border-primary",
-    variant: "outline",
-    size: "sm",
-  },
-};

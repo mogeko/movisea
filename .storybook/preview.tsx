@@ -1,6 +1,8 @@
 import type { Preview, Parameters } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-styling";
+import { Toaster } from "../components/toaster";
 import * as NextImage from "next/image";
+import React from "react";
 
 import "@/styles/globals.css";
 
@@ -37,6 +39,12 @@ export const decorators = [
     },
     defaultTheme: "light",
   }),
+  (Story) => (
+    <main className="bg-background">
+      <Story />
+      <Toaster />
+    </main>
+  ),
 ];
 
 export default preview;

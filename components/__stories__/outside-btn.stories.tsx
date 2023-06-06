@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { OutsideButton } from "@/components/outside-btn";
 
 export default {

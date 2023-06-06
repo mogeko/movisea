@@ -1,37 +1,30 @@
-import type { Preview, Parameters } from "@storybook/react";
-import { withThemeByClassName } from "@storybook/addon-styling";
-import { Toaster } from "../components/toaster";
-import * as NextImage from "next/image";
-import React from "react";
-
 import "@/styles/globals.css";
+import "@/.storybook/stubs/next-image";
 
-const OriginalNextImage = NextImage.default;
-
-Object.defineProperty(NextImage, "default", {
-  configurable: true,
-  value: (props) => OriginalNextImage({ ...props, unoptimized: true }),
-});
-
-const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
-    },
-  },
-};
+import * as React from "react";
+import type { Parameters, Decorator } from "@storybook/react";
+import { withThemeByClassName } from "@storybook/addon-styling";
+import { Toaster } from "@/components/toaster";
 
 export const parameters: Parameters = {
-  nextjs: {
-    appDirectory: true,
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
   },
+  backgrounds: { disable: true },
+  nextjs: { appDirectory: true },
 };
 
-export const decorators = [
+export const decorators: Array<Decorator> = [
+  (Story) => (
+    <div className="bg-background">
+      <Story />
+      <Toaster />
+    </div>
+  ),
   withThemeByClassName({
     themes: {
       light: "light",
@@ -39,12 +32,4 @@ export const decorators = [
     },
     defaultTheme: "light",
   }),
-  (Story) => (
-    <>
-      <Story />
-      <Toaster />
-    </>
-  ),
 ];
-
-export default preview;

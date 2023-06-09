@@ -82,6 +82,9 @@ devDependencies:
   '@storybook/testing-library':
     specifier: ^0.0.14-next.2
     version: 0.0.14-next.2
+  '@tsconfig/next':
+    specifier: ^1.0.5
+    version: 1.0.5
   '@types/node':
     specifier: 20.2.5
     version: 20.2.5
@@ -4804,6 +4807,10 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.3
       '@testing-library/dom': 8.20.0
+    dev: true
+
+  /@tsconfig/next@1.0.5:
+    resolution: {integrity: sha512-ZpAlWqSGE3ZWFqKmI3FiQEu8WcBF3uii1z1ovedMcALflsRoJnExp3YzWQ/fU7lzGmYtfX1CWFpf1Gl8aEC6GQ==}
     dev: true
 
   /@types/aria-query@5.0.1:

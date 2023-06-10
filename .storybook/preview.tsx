@@ -21,7 +21,7 @@ export const parameters: Parameters = {
 
 export const decorators: Array<Decorator> = [
   (Story) => (
-    <div className="bg-background p-4">
+    <div className="bg-background">
       <Story />
       <Toaster />
     </div>

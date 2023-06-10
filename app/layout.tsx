@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import { sans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/toaster";
 
@@ -23,7 +24,10 @@ export const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+          </div>
         </ThemeProvider>
         <Toaster />
       </body>

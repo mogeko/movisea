@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Front-end implementation of The Movie Database (TMDB)",
 };
 
-export const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <head />
@@ -35,10 +35,6 @@ export const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       </body>
     </html>
   );
-};
-
-type RootLayoutProps = {
-  children: React.ReactNode;
 };
 
 export default RootLayout;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RootLayout } from "@/app/layout";
+import RootLayout from "@/app/layout";
 
 export default {
   title: "App/Layout",

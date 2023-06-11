@@ -8,6 +8,7 @@ export const SiteHeader: React.FC = () => {
       <div className="container flex h-14 items-center">
         <MainNav />
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
+          <div /> {/* TODO: Search Button */}
           <ModeToggle />
         </div>
       </div>

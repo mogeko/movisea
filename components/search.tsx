@@ -12,6 +12,7 @@ const schema = object({
 
 export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
   placeholder = "Search...",
+  className,
   ...props
 }) => {
   const form = useForm<zInfer<typeof schema>>({
@@ -25,7 +26,7 @@ export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
   };
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)}>
+    <form className={className} onSubmit={form.handleSubmit(onSubmit)}>
       <Input
         placeholder={placeholder}
         {...form.register("keyword")}

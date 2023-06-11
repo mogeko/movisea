@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { site } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { sans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { SiteFooter } from "@/components/site-footer";
@@ -11,8 +11,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/toaster";
 
 export const metadata: Metadata = {
-  title: site.name,
-  description: site.description,
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

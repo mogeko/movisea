@@ -1,12 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { LuBellRing, LuCheck } from "react-icons/lu";
+
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 
 export default {
-  title: "Components/Card",
+  title: "Components/shadcn-ui/Card",
   component: Card,
   argTypes: {
     className: { control: { type: "text" } },
@@ -57,18 +65,29 @@ export const Notification: Story = {
         <div className=" flex items-center space-x-4 rounded-md border p-4">
           <LuBellRing />
           <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium leading-none">Push Notifications</p>
-            <p className="text-sm text-muted-foreground">Send notifications to device.</p>
+            <p className="text-sm font-medium leading-none">
+              Push Notifications
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Send notifications to device.
+            </p>
           </div>
           <Switch />
         </div>
         <div>
           {notifications.map((notification, index) => (
-            <div key={index} className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
+            <div
+              key={index}
+              className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+            >
               <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
               <div className="space-y-1">
-                <p className="text-sm font-medium leading-none">{notification.title}</p>
-                <p className="text-sm text-muted-foreground">{notification.description}</p>
+                <p className="text-sm font-medium leading-none">
+                  {notification.title}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {notification.description}
+                </p>
               </div>
             </div>
           ))}

@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Separator } from "@/components/ui/separator";
+
 import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 export default {
-  title: "Components/Separator",
+  title: "Components/shadcn-ui/Separator",
   component: Separator,
 } as Meta;
 type Story = StoryObj<typeof Separator>;
@@ -15,7 +16,9 @@ export const Demo1: Story = {
     <div>
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
-        <p className="text-sm text-muted-foreground">An open-source UI component library.</p>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
       </div>
       <Separator className={cn("my-4", className)} {...props} />
       <div className="flex h-5 items-center space-x-4 text-sm">

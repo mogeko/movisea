@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default {
-  title: "Components/Label",
+  title: "Components/shadcn-ui/Label",
   component: Label,
 } as Meta;
 type Story = StoryObj<typeof Label>;

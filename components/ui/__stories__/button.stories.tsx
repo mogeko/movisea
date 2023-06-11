@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LuMail, LuLoader2, LuArrowUpRight } from "react-icons/lu";
+import { LuLoader2, LuMail } from "react-icons/lu";
+
 import { Button } from "@/components/ui/button";
 
 export default {
-  title: "Components/Button",
+  title: "Components/shadcn-ui/Button",
   component: Button,
 } as Meta;
 type Story = StoryObj<typeof Button>;
@@ -66,18 +67,5 @@ export const Loading: Story = {
   ),
   args: {
     disabled: true,
-  },
-};
-
-export const OutsideSite: Story = {
-  render: (args) => (
-    <Button {...args}>
-      RARBG <LuArrowUpRight className="ml-2 h-4 w-4" />
-    </Button>
-  ),
-  args: {
-    className: "rounded-full border-4 border-primary",
-    variant: "outline",
-    size: "sm",
   },
 };

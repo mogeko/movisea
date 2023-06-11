@@ -2,6 +2,18 @@
   "name": "movisea",
   "version": "0.0.1",
   "private": true,
+  "description": "Front-end implementation of The Movie Database (TMDB)",
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": "github:mogeko/movisea",
+  "homepage": "https://github.com/mogeko/movisea#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/movisea/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

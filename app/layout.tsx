@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RootLayout: React.FC<{
+  children: React.ReactNode;
+  search: React.ReactNode;
+}> = ({ children, search }) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -27,7 +30,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
+            <SiteHeader searchBar={search} />
             <div className="flex-1">{children}</div>
             <SiteFooter />
           </div>

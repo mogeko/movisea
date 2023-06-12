@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
 
+import { tap } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
 const schema = object({
@@ -46,9 +47,12 @@ const useSearchHistory = (key = "searchHistory", init: string[] = []) => {
     () => localStorage.getItem(key) || initialValue
   );
   const setHistory = (newValue: string[]) => {
-    const strNewValue = JSON.stringify(newValue);
-    setValue(strNewValue);
-    localStorage.setItem(key, strNewValue);
+    if (newValue === init) {
+      localStorage.removeItem(key);
+    } else {
+      const str = JSON.stringify(newValue);
+      localStorage.setItem(key, tap<string>(setValue)(str));
+    }
   };
   const handleStorage = useCallback(
     (e: StorageEvent) => {

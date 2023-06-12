@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type Dispatch } from "react";
-import { LuCornerDownRight, LuSearch } from "react-icons/lu";
+import { LuCornerDownRight, LuSearch, LuTrash2 } from "react-icons/lu";
 
 import { useLocalStorage } from "@/lib/use-localstorage";
 import { cn } from "@/lib/utils";
@@ -59,6 +59,10 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
                 {keyword}
               </CommandItem>
             ))}
+            <CommandItem onSelect={() => setSearchHistory([])}>
+              <LuTrash2 className="mr-2 h-4 w-4" />
+              Clear search history
+            </CommandItem>
           </CommandGroup>
         </CommandList>
       </CommandDialog>

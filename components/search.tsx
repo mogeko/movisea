@@ -1,7 +1,8 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
 
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
   className,
   ...props
 }) => {
+  const [searchHistory, setSearchHistory] = useSearchHistory();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -22,6 +24,8 @@ export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
     },
   });
   const onSubmit = (values: zInfer<typeof schema>) => {
+    searchHistory.push(values.keyword);
+    setSearchHistory(searchHistory);
     console.log(values); // TODO: Implement search
   };
 
@@ -34,4 +38,32 @@ export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
       />
     </form>
   );
+};
+
+const useSearchHistory = (key = "searchHistory", init: string[] = []) => {
+  const initialValue = JSON.stringify(init);
+  const [value, setValue] = useState(
+    () => localStorage.getItem(key) || initialValue
+  );
+  const setHistory = (newValue: string[]) => {
+    const strNewValue = JSON.stringify(newValue);
+    setValue(strNewValue);
+    localStorage.setItem(key, strNewValue);
+  };
+  const handleStorage = useCallback(
+    (e: StorageEvent) => {
+      if (e.key !== key) return;
+      if (e.newValue !== value) {
+        setValue(e.newValue || initialValue);
+      }
+    },
+    [value]
+  );
+
+  useEffect(() => {
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, [handleStorage]);
+
+  return [JSON.parse(value) as string[], setHistory] as const;
 };

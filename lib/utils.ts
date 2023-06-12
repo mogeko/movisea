@@ -6,8 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function tap<T extends unknown>(fn: (x: T) => void) {
-  return (x: T) => {
-    fn(x);
-    return x;
-  };
+  return (x: T) => (fn(x), x);
 }

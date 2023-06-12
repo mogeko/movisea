@@ -61,7 +61,7 @@ const useSearchHistory = (key = "searchHistory", init: string[] = []) => {
         setValue(e.newValue || initialValue);
       }
     },
-    [value]
+    [value, initialValue, key]
   );
 
   useEffect(() => {

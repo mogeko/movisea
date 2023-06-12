@@ -1,43 +1,68 @@
 "use client";
 
-import type { Dispatch } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { object, string, type infer as zInfer } from "zod";
+import { useState, type Dispatch } from "react";
+import { LuCornerDownRight, LuSearch } from "react-icons/lu";
 
 import { useLocalStorage } from "@/lib/use-localstorage";
-import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  CommandDialog,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
-const schema = object({
-  keyword: string().min(3),
-});
-
-export const Search: React.FC<React.ComponentProps<typeof Input>> = ({
-  placeholder = "Search...",
-  className,
-  ...props
-}) => {
+export const Search: React.FC<{ className: string }> = ({ className }) => {
+  const [open, setOpen] = useState(false);
   const [searchHistory, setSearchHistory] = useSearchHistory();
-  const form = useForm<zInfer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      keyword: "",
-    },
-  });
-  const onSubmit = (values: zInfer<typeof schema>) => {
-    searchHistory.push(values.keyword);
-    setSearchHistory(searchHistory);
-    console.log(values); // TODO: Implement search
+  const [search, setSearch] = useState("");
+  const handleValueChange = (value: string) => setSearch(value);
+  const handleSubmit = (value: string) => {
+    if (value !== "") {
+      setSearchHistory([value, ...searchHistory]);
+      setSearch("");
+      console.log(value); // TODO: Implement search
+    }
   };
 
   return (
-    <form className={className} onSubmit={form.handleSubmit(onSubmit)}>
-      <Input
-        placeholder={placeholder}
-        {...form.register("keyword")}
-        {...props}
-      />
-    </form>
+    <>
+      <Button
+        variant="outline"
+        className={cn("justify-start", className)}
+        onClick={() => setOpen(!open)}
+      >
+        <LuSearch className="mr-2 h-4 w-4" />
+        Search...
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput
+          placeholder="Type a command or search..."
+          onValueChange={handleValueChange}
+        />
+        <CommandList>
+          {search !== "" && (
+            <CommandItem value={search} onSelect={handleSubmit}>
+              <LuCornerDownRight className="mr-2 h-4 w-4" />
+              Search &rdquo;{search}&rdquo; on TMDb...
+            </CommandItem>
+          )}
+          <CommandGroup title="Search History">
+            {searchHistory.map((keyword, i) => (
+              <CommandItem
+                key={`${keyword}-${i}}`}
+                value={keyword}
+                onSelect={handleSubmit}
+              >
+                {keyword}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
   );
 };
 

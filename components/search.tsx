@@ -1,7 +1,15 @@
 "use client";
 
 import { useState, type Dispatch } from "react";
-import { LuCornerDownRight, LuSearch, LuTrash2 } from "react-icons/lu";
+import { useTheme } from "next-themes";
+import {
+  LuCornerDownRight,
+  LuLaptop,
+  LuMoon,
+  LuSearch,
+  LuSunMedium,
+  LuTrash2,
+} from "react-icons/lu";
 
 import { useLocalStorage } from "@/lib/use-localstorage";
 import { cn } from "@/lib/utils";
@@ -12,6 +20,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "@/components/ui/command";
 
 export const Search: React.FC<{ className: string }> = ({ className }) => {
@@ -26,6 +35,7 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
       console.log(value); // TODO: Implement search
     }
   };
+  const { setTheme } = useTheme();
 
   return (
     <>
@@ -46,22 +56,37 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
           {search !== "" && (
             <CommandItem value={search} onSelect={handleSubmit}>
               <LuCornerDownRight className="mr-2 h-4 w-4" />
-              Search &rdquo;{search}&rdquo; on TMDb...
+              <span>Search &rdquo;{search}&rdquo; on TMDb...</span>
             </CommandItem>
           )}
-          <CommandGroup title="Search History">
+          <CommandGroup heading="Search History">
             {searchHistory.map((keyword, i) => (
               <CommandItem
                 key={`${keyword}-${i}}`}
                 value={keyword}
                 onSelect={handleSubmit}
               >
-                {keyword}
+                <span>{keyword}</span>
               </CommandItem>
             ))}
             <CommandItem onSelect={() => setSearchHistory([])}>
               <LuTrash2 className="mr-2 h-4 w-4" />
-              Clear search history
+              <span>Clear search history</span>
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Theme">
+            <CommandItem onSelect={() => setTheme("light")}>
+              <LuSunMedium className="mr-2 h-4 w-4" />
+              <span>Light</span>
+            </CommandItem>
+            <CommandItem onSelect={() => setTheme("dark")}>
+              <LuMoon className="mr-2 h-4 w-4" />
+              <span>Dark</span>
+            </CommandItem>
+            <CommandItem onSelect={() => setTheme("system")}>
+              <LuLaptop className="mr-2 h-4 w-4" />
+              <span>System</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>

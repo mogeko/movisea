@@ -3,16 +3,19 @@
 import { useCallback, useEffect, useState, type Dispatch } from "react";
 
 export function useLocalStorage(storageKey: string, init = "") {
-  const [value, setValue] = useState(
-    () => window.localStorage.getItem(storageKey) || init
-  );
+  const [value, setValue] = useState(init);
+
+  // In order to ensure that `window.*` code runs only in the client
+  // See: https://github.com/vercel/next.js/discussions/19911
+  useEffect(() => {
+    setValue(window.localStorage.getItem(storageKey) || init);
+  }, [storageKey, init]);
 
   const setItem: Dispatch<string> = (newValue) => {
     setValue(newValue);
 
     if (newValue === init) {
       window.localStorage.removeItem(storageKey);
-      console.log("removeItem");
     } else {
       window.localStorage.setItem(storageKey, newValue);
     }

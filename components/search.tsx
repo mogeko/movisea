@@ -48,7 +48,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
         router.push(`/search?q=${value}`);
       }
     },
-    [setSearchHistory, setSearch]
+    [setSearchHistory, setSearch, setOpen, router]
   );
   const { setTheme } = useTheme();
 

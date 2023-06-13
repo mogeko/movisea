@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { tokens } from "@/config/tokens";
+import type { XOR } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { PosterImage } from "@/components/poster-image";
 
@@ -17,12 +18,11 @@ const SearchPage: React.FC<{
         </h3>
       </div>
       {data.results.map((result) => (
-        <div className="relative lg:max-w-3xl">
+        <div className="relative lg:max-w-3xl" key={result.id}>
           <Separator />
           <Link
             className="relative flex flex-row py-6 gap-4 hover:bg-accent hover:text-accent-foreground"
             href={`${result.media_type}/${result.id}`}
-            key={result.id}
           >
             <PosterImage
               className="flex-1 max-w-[120px]"
@@ -65,25 +65,35 @@ const getSearchInfo = async (q: string, lang = "en-US", page = 1) => {
 
 export type SearchInfo = {
   page: number;
-  results: Array<{
-    ault: boolean;
-    backdrop_path: string;
-    id: number;
-    name: string;
-    title: string;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    poster_path: string;
-    media_type: "movie" | "tv";
-    genre_ids: number[];
-    popularity: number;
-    release_date: string;
-    first_air_date: string;
-    origin_country: string[];
-    vote_average: number;
-    vote_count: number;
-  }>;
+  results: Array<
+    XOR<
+      {
+        media_type: "movie";
+        title: string;
+        original_title: string;
+        release_date: string;
+      },
+      {
+        media_type: "tv";
+        name: string;
+        original_name: string;
+        first_air_date: string;
+        origin_country: string[];
+      }
+    > & {
+      ault: boolean;
+      backdrop_path: string;
+      id: number;
+      original_language: string;
+      overview: string;
+      poster_path: string;
+      genre_ids: number[];
+      popularity: number;
+      origin_country: string[];
+      vote_average: number;
+      vote_count: number;
+    }
+  >;
   total_pages: number;
   total_results: number;
 };

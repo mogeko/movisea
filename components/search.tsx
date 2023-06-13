@@ -56,7 +56,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
     <>
       <Button
         variant="outline"
-        className={cn("justify-between", className)}
+        className={cn("justify-between gap-4", className)}
         onClick={() => setOpen((open) => !open)}
       >
         <div className="inline-flex items-center justify-between flex-row">

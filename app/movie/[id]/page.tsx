@@ -13,6 +13,7 @@ const getMovieInfo = async (id: string, lang = "en-US") => {
   return await fetch(
     `https://api.themoviedb.org/3/movie/${id}?language=${lang}`,
     {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${tokens.tmdb}`,
         accept: "application/json",

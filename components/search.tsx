@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
   LuCornerDownRight,
@@ -36,14 +36,16 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [searchHistory, setSearchHistory] = useSearchHistory();
   const [search, setSearch] = useState("");
+  const router = useRouter();
   const handleSubmit = useCallback(
     (value: string) => {
       if (value !== "") {
         setSearchHistory((history) => {
           return !history.includes(value) ? [value, ...history] : history;
         });
-        setSearch("");
-        console.log(value); // TODO: Implement search
+        setSearch(""), setOpen(false);
+
+        router.push(`/search?q=${value}`);
       }
     },
     [setSearchHistory, setSearch]

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type Dispatch } from "react";
+import { useCallback, useState, type Dispatch } from "react";
 import { useTheme } from "next-themes";
 import {
   LuCornerDownRight,
@@ -27,16 +27,18 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [searchHistory, setSearchHistory] = useSearchHistory();
   const [search, setSearch] = useState("");
-  const handleValueChange = (value: string) => setSearch(value);
-  const handleSubmit = (value: string) => {
-    if (value !== "") {
-      if (!searchHistory.includes(value)) {
-        setSearchHistory([value, ...searchHistory]);
+  const handleSubmit = useCallback(
+    (value: string) => {
+      if (value !== "") {
+        if (!searchHistory.includes(value)) {
+          setSearchHistory([value, ...searchHistory]);
+        }
+        setSearch("");
+        console.log(value); // TODO: Implement search
       }
-      setSearch("");
-      console.log(value); // TODO: Implement search
-    }
-  };
+    },
+    [searchHistory, setSearchHistory, setSearch]
+  );
   const { setTheme } = useTheme();
 
   return (
@@ -52,7 +54,7 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
           placeholder="Type a command or search..."
-          onValueChange={handleValueChange}
+          onValueChange={setSearch}
         />
         <CommandList>
           {search !== "" && (

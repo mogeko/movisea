@@ -30,7 +30,9 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
   const handleValueChange = (value: string) => setSearch(value);
   const handleSubmit = (value: string) => {
     if (value !== "") {
-      setSearchHistory([value, ...searchHistory]);
+      if (!searchHistory.includes(value)) {
+        setSearchHistory([value, ...searchHistory]);
+      }
       setSearch("");
       console.log(value); // TODO: Implement search
     }

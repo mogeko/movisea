@@ -16,14 +16,4 @@ export default {
 } as Meta;
 type Story = StoryObj<typeof RootLayout>;
 
-export const Default: Story = {
-  args: {
-    search: <Search className="w-full md:max-w-[250px]" />,
-  },
-};
-
-export const NoSearchBar: Story = {
-  args: {
-    search: <div />,
-  },
-};
+export const Default: Story = {};

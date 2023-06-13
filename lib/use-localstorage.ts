@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState, type Dispatch } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 export function useLocalStorage(storageKey: string, init = "") {
   const [value, setValue] = useState(init);
@@ -11,13 +12,17 @@ export function useLocalStorage(storageKey: string, init = "") {
     setValue(window.localStorage.getItem(storageKey) || init);
   }, [storageKey, init]);
 
-  const setItem: Dispatch<string> = (newValue) => {
-    setValue(newValue);
-
-    if (newValue === init) {
-      window.localStorage.removeItem(storageKey);
+  const setItem: Dispatch<SetStateAction<string>> = (newValue) => {
+    if (typeof newValue === "function") {
+      return setItem(newValue(value));
     } else {
-      window.localStorage.setItem(storageKey, newValue);
+      setValue(newValue);
+
+      if (newValue === init) {
+        window.localStorage.removeItem(storageKey);
+      } else {
+        window.localStorage.setItem(storageKey, newValue);
+      }
     }
   };
 

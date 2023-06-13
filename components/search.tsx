@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState, type Dispatch } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { useTheme } from "next-themes";
 import {
   LuCornerDownRight,
@@ -23,21 +24,21 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 
-export const Search: React.FC<{ className: string }> = ({ className }) => {
+export const Search: React.FC<{ className?: string }> = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [searchHistory, setSearchHistory] = useSearchHistory();
   const [search, setSearch] = useState("");
   const handleSubmit = useCallback(
     (value: string) => {
       if (value !== "") {
-        if (!searchHistory.includes(value)) {
-          setSearchHistory([value, ...searchHistory]);
-        }
+        setSearchHistory((history) => {
+          return !history.includes(value) ? [value, ...history] : history;
+        });
         setSearch("");
         console.log(value); // TODO: Implement search
       }
     },
-    [searchHistory, setSearchHistory, setSearch]
+    [setSearchHistory, setSearch]
   );
   const { setTheme } = useTheme();
 
@@ -116,8 +117,12 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
 
 const useSearchHistory = (sKey = "searchHistory", init: string[] = []) => {
   const [item, setItem] = useLocalStorage(sKey, JSON.stringify(init));
-  const setSearchHistory: Dispatch<string[]> = (history) => {
-    setItem(JSON.stringify(history));
+  const setSearchHistory: Dispatch<SetStateAction<string[]>> = (history) => {
+    if (typeof history === "function") {
+      setItem(JSON.stringify(history(searchHistory)));
+    } else {
+      setItem(JSON.stringify(history));
+    }
   };
   const searchHistory = JSON.parse(item) as string[];
 

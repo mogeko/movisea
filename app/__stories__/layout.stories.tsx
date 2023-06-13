@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Search } from "@/components/search";
 import RootLayout from "@/app/layout";
 
 export default {
@@ -17,3 +16,13 @@ export default {
 type Story = StoryObj<typeof RootLayout>;
 
 export const Default: Story = {};
+
+export const WithSearchButton: Story = {
+  parameters: {
+    nextjs: {
+      navigation: {
+        pathname: "/movie/569094",
+      },
+    },
+  },
+};

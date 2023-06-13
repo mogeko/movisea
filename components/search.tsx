@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
   LuCornerDownRight,
@@ -23,6 +24,13 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+
+export const SearchInHeader: React.FC = () => {
+  const pathname = usePathname();
+
+  if (pathname === "/") return <div />;
+  return <Search />;
+};
 
 export const Search: React.FC<{ className?: string }> = ({ className }) => {
   const [open, setOpen] = useState(false);
@@ -56,7 +64,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
     <>
       <Button
         variant="outline"
-        className={cn("justify-between gap-4", className)}
+        className={cn("justify-between gap-4 w-full", className)}
         onClick={() => setOpen((open) => !open)}
       >
         <div className="inline-flex items-center justify-between flex-row">

@@ -7,7 +7,7 @@ const SearchPage: React.FC<{
 };
 
 const getSearchInfo = async (q: string, lang = "en-US", page = 1) => {
-  const res = await fetch(
+  return await fetch(
     `https://api.themoviedb.org/3/search/multi?query=${q}&language=${lang}&page=${page}`,
     {
       method: "GET",
@@ -16,10 +16,7 @@ const getSearchInfo = async (q: string, lang = "en-US", page = 1) => {
         accept: "application/json",
       },
     }
-  );
-  const data = (await res.json()) as SearchInfo;
-
-  return data;
+  ).then((res) => res.json() as Promise<SearchInfo>);
 };
 
 export type SearchInfo = {

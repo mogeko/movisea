@@ -12,3 +12,13 @@ export default {
 type Story = StoryObj<typeof SiteHeader>;
 
 export const Default: Story = {};
+
+export const WithSearchButton: Story = {
+  parameters: {
+    nextjs: {
+      navigation: {
+        pathname: "/movie/569094",
+      },
+    },
+  },
+};

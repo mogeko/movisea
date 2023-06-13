@@ -1,6 +1,6 @@
 import { MainNav } from "@/components/main-nav";
-
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "@/components/mode-toggle";
+import { SearchInHeader } from "@/components/search";
 
 export const SiteHeader: React.FC = () => {
   return (
@@ -8,8 +8,12 @@ export const SiteHeader: React.FC = () => {
       <div className="container flex h-14 items-center">
         <MainNav />
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
-          <div /> {/* TODO: Search Button */}
-          <ModeToggle />
+          <div className="w-full flex-1 md:max-w-[250px] md:flex-none">
+            <SearchInHeader />
+          </div>
+          <nav className="flex items-center space-x-1">
+            <ModeToggle />
+          </nav>
         </div>
       </div>
     </header>

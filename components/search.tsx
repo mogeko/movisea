@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, type Dispatch } from "react";
+import { useCallback, useEffect, useState, type Dispatch } from "react";
 import { useTheme } from "next-themes";
 import {
   LuCornerDownRight,
@@ -41,15 +41,30 @@ export const Search: React.FC<{ className: string }> = ({ className }) => {
   );
   const { setTheme } = useTheme();
 
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && e.metaKey) {
+        setOpen((open) => !open);
+      }
+    };
+    window.addEventListener("keydown", down);
+    return () => window.removeEventListener("keydown", down);
+  }, []);
+
   return (
     <>
       <Button
         variant="outline"
-        className={cn("justify-start", className)}
-        onClick={() => setOpen(!open)}
+        className={cn("justify-between", className)}
+        onClick={() => setOpen((open) => !open)}
       >
-        <LuSearch className="mr-2 h-4 w-4" />
-        Search...
+        <div className="inline-flex items-center justify-between flex-row">
+          <LuSearch className="mr-2 h-4 w-4" />
+          <span>Search...</span>
+        </div>
+        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+          <span className="text-xs">&#x2318;</span>K
+        </kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput

@@ -9,9 +9,11 @@ const MoviePage: React.FC<{
   return <main>{/* TODO: Fill content */}</main>;
 };
 
-const getMovieInfo = async (id: string, lang = "en-US") => {
-  return await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?language=${lang}`,
+const getMovieInfo = async (id: string, params?: SearchParams) => {
+  const searchParams = new URLSearchParams(params);
+
+  return (await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?${searchParams}`,
     {
       method: "GET",
       headers: {
@@ -19,7 +21,12 @@ const getMovieInfo = async (id: string, lang = "en-US") => {
         accept: "application/json",
       },
     }
-  ).then((res) => res.json() as Promise<MovieInfo>);
+  ).then((res) => res.json())) as Promise<MovieInfo>;
+};
+
+type SearchParams = {
+  append_to_response?: string;
+  language?: string;
 };
 
 export type MovieInfo = {

@@ -7,9 +7,14 @@ import { Pagination } from "@/components/pagination";
 import { PosterImage } from "@/components/poster-image";
 
 const SearchPage: React.FC<{
-  searchParams: { q: string; page: number };
-}> = async ({ searchParams }) => {
-  const data = await getSearchInfo(searchParams.q, searchParams.page);
+  searchParams: { q: string; page?: number };
+}> = async ({ searchParams: { q, page } }) => {
+  const data = await getSearchInfo("multi", {
+    query: q,
+    include_adult: "false",
+    language: "en-US",
+    page: page?.toString() ?? "1",
+  });
 
   return (
     <main className="relative flex flex-col px-2 lg:max-w-3xl">
@@ -52,9 +57,11 @@ const SearchPage: React.FC<{
   );
 };
 
-const getSearchInfo = async (q: string, page = 1, lang = "en-US") => {
-  return await fetch(
-    `https://api.themoviedb.org/3/search/multi?query=${q}&language=${lang}&page=${page}`,
+const getSearchInfo = async (type: string, params: SearchParams) => {
+  const searchParams = new URLSearchParams(params);
+
+  return (await fetch(
+    `https://api.themoviedb.org/3/search/${type}?${searchParams.toString()}`,
     {
       method: "GET",
       headers: {
@@ -62,7 +69,14 @@ const getSearchInfo = async (q: string, page = 1, lang = "en-US") => {
         accept: "application/json",
       },
     }
-  ).then((res) => res.json() as Promise<SearchInfo>);
+  ).then((res) => res.json())) as Promise<SearchInfo>;
+};
+
+type SearchParams = {
+  query: string;
+  include_adult?: "false" | "true";
+  language?: string;
+  page?: string;
 };
 
 export type SearchInfo = {

@@ -2,97 +2,108 @@
 
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { cva } from "class-variance-authority";
+import { usePathname, useSearchParams } from "next/navigation";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 import { cn, range } from "@/lib/utils";
-
-const paginationButtonVariants = cva(
-  "inline-flex items-center justify-center rounded-full h-8 w-8 text-sm font-medium transition-colors ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-  {
-    variants: {
-      variant: {
-        default: "hover:bg-accent hover:text-accent-foreground",
-        marked:
-          "bg-primary text-primary-foreground hover:bg-primary/90 pointer-events-none",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export const Pagination: React.FC<{
   totalPages: number;
 }> = ({ totalPages }) => {
-  const currentPage = Number(useSearchParams().get("page") ?? 1);
-  const randerPagination = useCallback(
+  const searchParams = useSearchParams()!;
+  const pathname = usePathname();
+  const currentPage = Number(searchParams.get("page") ?? 1);
+  const createQueryString = useCallback(
+    (page: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", page.toString());
+      return params.toString();
+    },
+    [searchParams]
+  );
+  const createPagination = useCallback(
     (start: number, end: number) => {
       return range(start, end + 1).map((page) => (
-        <Link
-          className={paginationButtonVariants({
-            variant: page === currentPage ? "marked" : "default",
-          })}
-          href="#"
+        <Button
+          className={cn(
+            currentPage === page ? "pointer-events-none" : "",
+            "rounded-full h-8 w-8"
+          )}
+          variant={currentPage === page ? "default" : "ghost"}
           key={`pagination-${page}`}
+          size={null}
         >
-          {page}
-        </Link>
+          <Link href={`${pathname}?${createQueryString(page)}`} replace>
+            {page}
+          </Link>
+        </Button>
       ));
     },
-    [currentPage]
+    [currentPage, pathname, createQueryString]
   );
   const pagination = useMemo(() => {
-    if (totalPages <= 9) return randerPagination(1, totalPages);
+    if (totalPages <= 9) return createPagination(1, totalPages);
     if (currentPage < 4 || currentPage > totalPages - 4) {
       return (
         <>
-          {randerPagination(1, 4)}
+          {createPagination(1, 4)}
           <Ellipsis />
-          {randerPagination(totalPages - 3, totalPages)}
+          {createPagination(totalPages - 3, totalPages)}
         </>
       );
     }
     return (
       <>
-        {randerPagination(1, 2)}
+        {createPagination(1, 2)}
         <Ellipsis />
-        {randerPagination(currentPage - 1, currentPage + 1)}
+        {createPagination(currentPage - 1, currentPage + 1)}
         <Ellipsis />
-        {randerPagination(totalPages - 1, totalPages)}
+        {createPagination(totalPages - 1, totalPages)}
       </>
     );
-  }, [currentPage, totalPages, randerPagination]);
+  }, [currentPage, totalPages, createPagination]);
 
   return (
     <nav className="flex flex-row justify-center flex-wrap items-center md:gap-1">
-      <Link
-        className={cn(
-          currentPage === 1 ? "opacity-50 pointer-events-none" : "",
-          paginationButtonVariants()
-        )}
-        href="#"
+      <Button
+        className="rounded-full h-8 w-8"
+        variant="ghost"
+        disabled={currentPage === 1}
+        size={null}
       >
-        <LuChevronLeft className="h-4 w-4" />
-      </Link>
+        <Link
+          href={`${pathname}?${createQueryString(currentPage - 1)}`}
+          replace
+        >
+          <LuChevronLeft className="h-6 w-6" />
+        </Link>
+      </Button>
       {pagination}
-      <Link
-        className={cn(
-          currentPage === totalPages ? "opacity-50 pointer-events-none" : "",
-          paginationButtonVariants()
-        )}
-        href="#"
+      <Button
+        className="rounded-full h-8 w-8"
+        variant="ghost"
+        disabled={currentPage === totalPages}
+        size={null}
       >
-        <LuChevronRight className="h-4 w-4" />
-      </Link>
+        <Link
+          href={`${pathname}?${createQueryString(currentPage + 1)}`}
+          replace
+        >
+          <LuChevronRight className="h-6 w-6" />
+        </Link>
+      </Button>
     </nav>
   );
 };
 
 const Ellipsis: React.FC = () => (
-  <div className={cn("pointer-events-none", paginationButtonVariants())}>
+  <div
+    className={cn(
+      buttonVariants({ variant: null, size: null }),
+      "pointer-events-none h-8 w-8"
+    )}
+  >
     ...
   </div>
 );

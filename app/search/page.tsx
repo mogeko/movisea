@@ -3,22 +3,23 @@ import Link from "next/link";
 import { tokens } from "@/config/tokens";
 import type { XOR } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { Pagination } from "@/components/pagination";
 import { PosterImage } from "@/components/poster-image";
 
 const SearchPage: React.FC<{
-  searchParams: { q: string };
+  searchParams: { q: string; page: number };
 }> = async ({ searchParams }) => {
-  const data = await getSearchInfo(searchParams.q);
+  const data = await getSearchInfo(searchParams.q, searchParams.page);
 
   return (
-    <main className="relative flex flex-col px-2">
+    <main className="relative flex flex-col px-2 lg:max-w-3xl">
       <div className="flex flex-row justify-start items-center pb-4">
         <h3 className="text-2xl font-semibold tracking-tight">
           {data.total_results} media results
         </h3>
       </div>
       {data.results.map((result) => (
-        <div className="relative lg:max-w-3xl" key={result.id}>
+        <div className="relative" key={result.id}>
           <Separator />
           <Link
             className="relative flex flex-row py-6 gap-4 hover:bg-accent hover:text-accent-foreground"
@@ -26,7 +27,7 @@ const SearchPage: React.FC<{
           >
             <PosterImage
               className="flex-1 max-w-[120px]"
-              src={result.poster_path}
+              src={result.poster_path ?? "/no-poster.png"}
               alt={result.title ?? result.name}
               width={94}
             />
@@ -46,11 +47,12 @@ const SearchPage: React.FC<{
           </Link>
         </div>
       ))}
+      <Pagination totalPages={data.total_pages} />
     </main>
   );
 };
 
-const getSearchInfo = async (q: string, lang = "en-US", page = 1) => {
+const getSearchInfo = async (q: string, page = 1, lang = "en-US") => {
   return await fetch(
     `https://api.themoviedb.org/3/search/multi?query=${q}&language=${lang}&page=${page}`,
     {

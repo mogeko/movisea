@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Pagination } from "@/components/pagination";
+import { Pagination } from "@/app/search/components/pagination";
 
 export default {
-  title: "Components/Pagination",
+  title: "APP/Search/Components/Pagination",
   component: Pagination,
 } as Meta;
 type Story = StoryObj<typeof Pagination>;

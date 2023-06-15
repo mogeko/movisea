@@ -45,7 +45,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
         });
         setSearch(""), setOpen(false);
 
-        router.push(`/search?q=${value}`);
+        router.push(`/search/multi?q=${value}`);
       }
     },
     [setSearchHistory, setSearch, setOpen, router]

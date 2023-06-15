@@ -3,13 +3,14 @@ import Link from "next/link";
 import { tokens } from "@/config/tokens";
 import type { XOR } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { Pagination } from "@/components/pagination";
 import { PosterImage } from "@/components/poster-image";
+import { Pagination } from "@/app/search/components/pagination";
 
 const SearchPage: React.FC<{
   searchParams: { q: string; page?: number };
-}> = async ({ searchParams: { q, page } }) => {
-  const data = await getSearchInfo("multi", {
+  params: { type: string };
+}> = async ({ searchParams: { q, page }, params }) => {
+  const data = await getSearchInfo(params.type, {
     query: q,
     include_adult: "false",
     language: "en-US",

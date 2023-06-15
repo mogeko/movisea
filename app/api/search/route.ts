@@ -2,6 +2,19 @@ import { NextResponse } from "next/server";
 
 import { tokens } from "@/config/tokens";
 
+/**
+ * An api route that returns a list of simplified search results
+ *
+ * ## Search Params
+ *
+ * - `query` - (Required) The search query
+ * - `language` - The language to search in. Default: `en-US`
+ * - `page` - The page number to return. Default: `1`
+ * - `include_adult` - Whether to include adult content in the results. Default: `false`
+ *
+ * See: https://developer.themoviedb.org/reference/search-multi
+ *
+ */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 

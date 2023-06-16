@@ -12,9 +12,7 @@ import {
   LuSunMedium,
   LuTrash2,
 } from "react-icons/lu";
-import useSWR from "swr";
 
-import { useDebounce } from "@/lib/use-debounce";
 import { useLocalStorage } from "@/lib/use-localstorage";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -26,7 +24,6 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import type { SearchResults } from "@/app/api/search/route";
 
 export const SearchInHeader: React.FC = () => {
   const pathname = usePathname();
@@ -53,6 +50,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
     },
     [setSearchHistory, setSearch, setOpen, router]
   );
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -60,7 +58,6 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
         setOpen((open) => !open);
       }
     };
-
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
   }, []);
@@ -108,35 +105,27 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
-          <ThemeCommandGroup />
+          <CommandGroup heading="Theme">
+            <CommandItem onSelect={() => setTheme("light")}>
+              <LuSunMedium className="mr-2 h-4 w-4" />
+              <span>Light</span>
+            </CommandItem>
+            <CommandItem onSelect={() => setTheme("dark")}>
+              <LuMoon className="mr-2 h-4 w-4" />
+              <span>Dark</span>
+            </CommandItem>
+            <CommandItem onSelect={() => setTheme("system")}>
+              <LuLaptop className="mr-2 h-4 w-4" />
+              <span>System</span>
+            </CommandItem>
+          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </>
   );
 };
 
-const ThemeCommandGroup: React.FC = () => {
-  const { setTheme } = useTheme();
-
-  return (
-    <CommandGroup heading="Theme">
-      <CommandItem onSelect={() => setTheme("light")}>
-        <LuSunMedium className="mr-2 h-4 w-4" />
-        <span>Light</span>
-      </CommandItem>
-      <CommandItem onSelect={() => setTheme("dark")}>
-        <LuMoon className="mr-2 h-4 w-4" />
-        <span>Dark</span>
-      </CommandItem>
-      <CommandItem onSelect={() => setTheme("system")}>
-        <LuLaptop className="mr-2 h-4 w-4" />
-        <span>System</span>
-      </CommandItem>
-    </CommandGroup>
-  );
-};
-
-function useSearchHistory(sKey = "searchHistory", init: string[] = []) {
+const useSearchHistory = (sKey = "searchHistory", init: string[] = []) => {
   const [item, setItem] = useLocalStorage(sKey, JSON.stringify(init));
   const setSearchHistory: Dispatch<SetStateAction<string[]>> = (history) => {
     if (typeof history === "function") {
@@ -148,13 +137,4 @@ function useSearchHistory(sKey = "searchHistory", init: string[] = []) {
   const searchHistory = JSON.parse(item) as string[];
 
   return [searchHistory, setSearchHistory] as const;
-}
-
-function useSearch(search: string, lang = "en-US") {
-  const debounce = useDebounce(search, 500);
-
-  return useSWR<SearchResults>(
-    debounce ? `/api/search?query=${debounce}&language=${lang}` : null,
-    (url) => fetch(url).then((res) => res.json())
-  );
-}
+};

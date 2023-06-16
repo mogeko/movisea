@@ -50,7 +50,6 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
     },
     [setSearchHistory, setSearch, setOpen, router]
   );
-  const { setTheme } = useTheme();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -58,6 +57,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
         setOpen((open) => !open);
       }
     };
+
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
   }, []);
@@ -105,27 +105,35 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Theme">
-            <CommandItem onSelect={() => setTheme("light")}>
-              <LuSunMedium className="mr-2 h-4 w-4" />
-              <span>Light</span>
-            </CommandItem>
-            <CommandItem onSelect={() => setTheme("dark")}>
-              <LuMoon className="mr-2 h-4 w-4" />
-              <span>Dark</span>
-            </CommandItem>
-            <CommandItem onSelect={() => setTheme("system")}>
-              <LuLaptop className="mr-2 h-4 w-4" />
-              <span>System</span>
-            </CommandItem>
-          </CommandGroup>
+          <ThemeCommandGroup />
         </CommandList>
       </CommandDialog>
     </>
   );
 };
 
-const useSearchHistory = (sKey = "searchHistory", init: string[] = []) => {
+const ThemeCommandGroup: React.FC = () => {
+  const { setTheme } = useTheme();
+
+  return (
+    <CommandGroup heading="Theme">
+      <CommandItem onSelect={() => setTheme("light")}>
+        <LuSunMedium className="mr-2 h-4 w-4" />
+        <span>Light</span>
+      </CommandItem>
+      <CommandItem onSelect={() => setTheme("dark")}>
+        <LuMoon className="mr-2 h-4 w-4" />
+        <span>Dark</span>
+      </CommandItem>
+      <CommandItem onSelect={() => setTheme("system")}>
+        <LuLaptop className="mr-2 h-4 w-4" />
+        <span>System</span>
+      </CommandItem>
+    </CommandGroup>
+  );
+};
+
+function useSearchHistory(sKey = "searchHistory", init: string[] = []) {
   const [item, setItem] = useLocalStorage(sKey, JSON.stringify(init));
   const setSearchHistory: Dispatch<SetStateAction<string[]>> = (history) => {
     if (typeof history === "function") {
@@ -137,4 +145,4 @@ const useSearchHistory = (sKey = "searchHistory", init: string[] = []) => {
   const searchHistory = JSON.parse(item) as string[];
 
   return [searchHistory, setSearchHistory] as const;
-};
+}

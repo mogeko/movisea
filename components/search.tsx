@@ -12,7 +12,9 @@ import {
   LuSunMedium,
   LuTrash2,
 } from "react-icons/lu";
+import useSWR from "swr";
 
+import { useDebounce } from "@/lib/use-debounce";
 import { useLocalStorage } from "@/lib/use-localstorage";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -24,6 +26,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import type { SearchResults } from "@/app/api/search/route";
 
 export const SearchInHeader: React.FC = () => {
   const pathname = usePathname();
@@ -145,4 +148,13 @@ function useSearchHistory(sKey = "searchHistory", init: string[] = []) {
   const searchHistory = JSON.parse(item) as string[];
 
   return [searchHistory, setSearchHistory] as const;
+}
+
+function useSearch(search: string, lang = "en-US") {
+  const debounce = useDebounce(search, 500);
+
+  return useSWR<SearchResults>(
+    debounce ? `/api/search?query=${debounce}&language=${lang}` : null,
+    (url) => fetch(url).then((res) => res.json())
+  );
 }

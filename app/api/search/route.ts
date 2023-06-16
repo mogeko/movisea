@@ -41,15 +41,15 @@ export async function GET(request: Request) {
     }
   });
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ results: data });
 }
 
 // Set how Next.js handles caching
 // See: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#fetchcache
 export const fetchCache = "default-cache";
 
-type SearchResults = {
-  data: Array<{
+export type SearchResults = {
+  results: Array<{
     type: "movie" | "tv" | "person";
     id: number;
     title: string;

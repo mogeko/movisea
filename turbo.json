@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["NODE_ENV"],
+  "pipeline": {
+    "dev": { "cache": false },
+    "build": {
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint": { "cache": false, "outputs": [] },
+    "fmt": { "cache": false, "outputs": [] }
+  }
+}

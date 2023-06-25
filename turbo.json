@@ -6,6 +6,7 @@
     "build": {
       "outputs": ["dist/**", ".next/**"]
     },
+    "start": { "dependsOn": ["build"] },
     "test": { "cache": false, "outputs": [] },
     "cov": { "cache": false, "outputs": [] },
     "type-check": { "cache": false, "outputs": [] },

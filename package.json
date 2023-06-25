@@ -18,6 +18,7 @@
     "dev": "turbo run --filter=movisea-web dev",
     "storybook": "turbo run --filter=movisea-stories dev",
     "build": "turbo run build",
+    "start": "turbo run start",
     "test": "turbo run test",
     "cov": "turbo run cov",
     "type-check": "turbo run type-check",

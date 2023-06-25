@@ -2,10 +2,12 @@
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": ["NODE_ENV"],
   "pipeline": {
-    "dev": { "cache": false },
+    "dev": { "dependsOn": ["^build"], "cache": false },
     "build": {
       "outputs": ["dist/**", ".next/**"]
     },
+    "test": { "cache": false, "outputs": [] },
+    "cov": { "cache": false, "outputs": [] },
     "type-check": { "cache": false, "outputs": [] },
     "lint": { "cache": false, "outputs": [] },
     "fmt": { "cache": false, "outputs": [] }

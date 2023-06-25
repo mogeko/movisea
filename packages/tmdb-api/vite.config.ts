@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import path from "path";
 import { defineConfig } from "vite";
 
@@ -9,10 +10,15 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/mod.ts"),
       name: pkg.name,
     },
-    emptyOutDir: false,
     sourcemap: true,
   },
   define: {
     "import.meta.vitest": "undefined",
+  },
+  test: {
+    includeSource: ["src/**/*.{js,ts}"],
+    coverage: {
+      reporter: ["text", "json", "html"],
+    },
   },
 });

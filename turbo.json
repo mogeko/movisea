@@ -6,6 +6,7 @@
     "build": {
       "outputs": ["dist/**", ".next/**"]
     },
+    "type-check": { "cache": false, "outputs": [] },
     "lint": { "cache": false, "outputs": [] },
     "fmt": { "cache": false, "outputs": [] }
   }

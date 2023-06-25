@@ -1,0 +1,16 @@
+{
+  "name": "tmdb-api",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run type-check && vite build",
+    "type-check": "tsc --noEmit",
+    "lint": "prettier --check \"src/**/*.{js,ts}\" --cache",
+    "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  }
+}

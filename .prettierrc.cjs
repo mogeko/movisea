@@ -1,4 +1,7 @@
+// @ts-check
+
 /** @type {import('prettier').Config} */
+/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
 module.exports = {
   importOrder: [
     "^(react/(.*)$)|^(react$)",

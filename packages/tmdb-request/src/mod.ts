@@ -1,4 +1,4 @@
-export function tmdb() {
+export function request() {
   return "Hello World";
 }
 
@@ -7,7 +7,7 @@ if (import.meta.vitest) {
 
   describe("main", () => {
     it("should return Hello World", () => {
-      expect(tmdb()).toBe("Hello World");
+      expect(request()).toBe("Hello World");
     });
   });
 }

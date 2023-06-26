@@ -1,16 +1,18 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["NODE_ENV"],
   "pipeline": {
     "dev": { "cache": false },
     "build": {
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "dotEnv": [".env.local"]
     },
     "start": { "dependsOn": ["build"] },
-    "test": { "cache": false, "outputs": [] },
+    "test": { "cache": false, "outputs": [], "persistent": true },
     "cov": { "cache": false, "outputs": [] },
     "type-check": { "cache": false, "outputs": [] },
     "lint": { "cache": false, "outputs": [] },
     "fmt": { "cache": false, "outputs": [] }
-  }
+  },
+  "globalDependencies": [".prettierrc.cjs", ".eslintrc.json"],
+  "globalEnv": ["NODE_ENV"]
 }

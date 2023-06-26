@@ -1,5 +1,7 @@
+import { request } from "tmdb-request";
+
 export function tmdb() {
-  return "Hello World";
+  return request("");
 }
 
 if (import.meta.vitest) {

@@ -1,4 +1,4 @@
-export function request() {
+export function request(_endpoint: string, _opts = {}) {
   return "Hello World";
 }
 
@@ -7,7 +7,7 @@ if (import.meta.vitest) {
 
   describe("main", () => {
     it("should return Hello World", () => {
-      expect(request()).toBe("Hello World");
+      expect(request("")).toBe("Hello World");
     });
   });
 }

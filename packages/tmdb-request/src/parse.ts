@@ -1,4 +1,5 @@
-import type { Endpoint, RequestMethod } from "@/defaults";
+import type { Endpoint, RequestMethod, RequestParameters } from "@/defaults";
+import { pick } from "@/pick";
 import { parseTemplate, type Template } from "url-template";
 
 export function parse(endpoint: Endpoint) {
@@ -10,16 +11,20 @@ export function parse(endpoint: Endpoint) {
       const method = _path ? _method.toUpperCase() : endpointMethod;
       const path = parseTemplate(_path ?? _method).expand(opts);
 
-      return {
+      return pick_params({
         method: method as RequestMethod,
         url: otherEndpoint.baseUrl + path,
         ...otherEndpoint,
-      } as Endpoint;
+      } as Context);
     } else {
-      return Object.assign(endpoint, route);
+      return pick_params(Object.assign(endpoint, route));
     }
   };
 }
+
+const pick_params = (opts: Context): RequestParameters => {
+  return pick(opts, ["method", "url", "headers"]);
+};
 
 export type Context = Parameters<Template["expand"]>[0];
 
@@ -35,16 +40,17 @@ if (import.meta.vitest) {
 
       const endpoint = parser("/foo/{bar}", { bar: "baz" });
 
-      expect(endpoint.url).toEqual(`${endpoint.baseUrl}/foo/baz`);
+      expect(endpoint.url).toEqual(`${DEFAULTS.baseUrl}/foo/baz`);
       expect(endpoint.method).toEqual("GET");
 
       const endpoint2 = parser("POST /foo/{bar}", { bar: "baz" });
 
       expect(endpoint2.method).toEqual("POST");
 
-      const endpoint3 = parser();
-
-      expect(endpoint3).toEqual(DEFAULTS);
+      expect(parser()).toEqual({
+        method: DEFAULTS.method,
+        headers: DEFAULTS.headers,
+      });
     });
   });
 }

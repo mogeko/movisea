@@ -24,7 +24,9 @@ if (import.meta.vitest) {
       expect(
         mergeDeep({ foo: { bar1: "baz" } }, { foo: { bar2: "qux" } })
       ).toEqual({ foo: { bar1: "baz", bar2: "qux" } });
+    });
 
+    it("should cover by right hand", () => {
       expect(
         mergeDeep({ foo: { bar: "baz" } }, { foo: { bar: "qux" } })
       ).toEqual({ foo: { bar: "qux" } });

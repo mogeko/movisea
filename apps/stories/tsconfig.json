@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "movisea-web/tsconfig.json",
+  "compilerOptions": {
+    "paths": { "@/*": ["../web/*"] },
+    "baseUrl": "."
+  },
+  "include": [".storybook/**/*", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

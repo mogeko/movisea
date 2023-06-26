@@ -1,0 +1,20 @@
+{
+  "name": "tmdb-request",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run type-check && vite build",
+    "test": "vitest watch",
+    "cov": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "lint": "prettier --check \"src/**/*.{js,ts}\" --cache",
+    "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^0.32.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9",
+    "vitest": "^0.32.2"
+  }
+}

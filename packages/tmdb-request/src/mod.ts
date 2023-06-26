@@ -1,12 +1,22 @@
-import { DEFAULTS, type Endpoint } from "@/defaults";
+import { DEFAULTS } from "@/defaults";
+import type { Endpoint, Options } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
 import { parse } from "@/parse";
 
-export function request(_route: string, _opts = {}) {
-  return "Hello World";
+export async function request<T extends unknown>(
+  route: string,
+  opts: Options = {}
+): Promise<T | null> {
+  const { url, ...options } = parser(route, opts);
+
+  if (url) {
+    return (await fetch(url, options)).json();
+  }
+
+  return null;
 }
 
-export function parser(route: string, opts = {}) {
+export function parser(route: string, opts: Options = {}) {
   return parse(mergeDeep(DEFAULTS, opts) as Endpoint)(route, opts);
 }
 
@@ -15,10 +25,6 @@ if (import.meta.vitest) {
   const { getUserAgent } = await import("universal-user-agent");
 
   describe("main", () => {
-    it("should return Hello World", () => {
-      expect(request("")).toBe("Hello World");
-    });
-
     it("should parse route", () => {
       expect(
         parser("/foo/{bar}", { bar: "baz", headers: { authorization: "xxx" } })

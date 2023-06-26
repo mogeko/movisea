@@ -7,7 +7,7 @@ export const DEFAULTS = {
     accept: "application/json",
     "user-agent": getUserAgent(),
   },
-};
+} as const;
 
 export type RequestParameters = {
   method?: RequestMethod;
@@ -15,11 +15,10 @@ export type RequestParameters = {
     accept?: string;
     authorization?: string;
     "user-agent"?: string;
-    [header: string]: string | number | undefined;
   };
   url?: string;
-  [parameter: string]: unknown;
 };
 
-export type Endpoint = RequestParameters & typeof DEFAULTS;
-export type RequestMethod = "GET" | "POST" | "PUT" | "DELETE";
+export type Options = RequestParameters & Record<string, any>;
+export type Endpoint = Options & typeof DEFAULTS;
+export type RequestMethod = "GET" | "POST" | "DELETE";

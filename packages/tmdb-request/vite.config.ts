@@ -18,7 +18,7 @@ export default defineConfig({
   resolve: {
     alias: { "@": path.resolve(__dirname, "src") },
   },
-  plugins: [dts({ rollupTypes: true })],
+  plugins: [dts({ rollupTypes: false })],
 
   /* Vitest config */
   define: { "import.meta.vitest": "undefined" },

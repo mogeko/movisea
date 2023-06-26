@@ -12,6 +12,7 @@ describe("parser", () => {
     expect(context.url).toEqual("https://api.themoviedb.org/3/foo/baz");
     expect(context.headers?.authorization).toEqual("xxx");
 
+    delete context.headers?.["user-agent"];
     expect(context).toMatchSnapshot();
   });
 });

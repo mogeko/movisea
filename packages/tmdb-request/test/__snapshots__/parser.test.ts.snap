@@ -5,7 +5,6 @@ exports[`parser > should parse route 1`] = `
   "headers": {
     "accept": "application/json",
     "authorization": "xxx",
-    "user-agent": "Node.js/20.3.1 (darwin; arm64)",
   },
   "method": "GET",
   "url": "https://api.themoviedb.org/3/foo/baz",

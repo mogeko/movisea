@@ -8,7 +8,7 @@
   "types": "dist/mod.d.ts",
   "scripts": {
     "build": "pnpm run type-check && vite build",
-    "test": "vitest watch",
+    "test": "vitest run",
     "cov": "vitest run --coverage",
     "type-check": "tsc --noEmit",
     "lint": "prettier --check \"src/**/*.{js,ts}\" --cache",

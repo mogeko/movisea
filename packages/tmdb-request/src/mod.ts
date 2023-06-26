@@ -1,4 +1,4 @@
-export function request(_endpoint: string, _opts = {}) {
+export function request(_route: string, _opts = {}) {
   return "Hello World";
 }
 

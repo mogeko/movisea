@@ -168,6 +168,9 @@ importers:
       tailwind-merge:
         specifier: ^1.13.2
         version: 1.13.2
+      tmdb-request:
+        specifier: workspace:^
+        version: link:../../packages/tmdb-request
       zod:
         specifier: ^3.21.4
         version: 3.21.4

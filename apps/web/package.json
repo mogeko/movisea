@@ -31,6 +31,7 @@
     "react-hook-form": "^7.45.0",
     "react-icons": "^4.10.1",
     "tailwind-merge": "^1.13.2",
+    "tmdb-request": "workspace:^",
     "zod": "^3.21.4"
   },
   "devDependencies": {

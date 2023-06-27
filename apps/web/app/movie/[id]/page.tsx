@@ -1,5 +1,6 @@
+import { request } from "tmdb-request";
+
 import { tokens } from "@/config/tokens";
-import { PosterImage } from "@/components/poster-image";
 
 const MoviePage: React.FC<{
   params: { id: string };
@@ -10,18 +11,18 @@ const MoviePage: React.FC<{
 };
 
 const getMovieInfo = async (id: string, params?: SearchParams) => {
-  const searchParams = new URLSearchParams(params);
-
-  return (await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?${searchParams}`,
+  return request<MovieInfo>(
+    "/movie/{id}?append_to_response={append_to_response}&language={language}",
     {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${tokens.tmdb}`,
-        accept: "application/json",
-      },
+      headers: { authorization: `Bearer ${tokens.tmdb}` },
+      append_to_response: params?.append_to_response ?? "",
+      language: params?.language ?? "en-US",
+      id: id,
     }
-  ).then((res) => res.json())) as Promise<MovieInfo>;
+  ).catch((error) => {
+    console.error(error);
+    return null;
+  });
 };
 
 type SearchParams = {

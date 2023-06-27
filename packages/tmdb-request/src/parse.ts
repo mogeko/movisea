@@ -4,11 +4,11 @@ import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
 export function parse(endpoint: WithDefaults<Context>) {
-  return (route?: string, opts: Context = {}): RequestParameters => {
+  return (route?: string, opts: Context = {}) => {
     const [params, options] = splitParams(mergeDeep(endpoint, opts));
 
     if (typeof route === "string") {
-      const [method, path] = route.split(" ");
+      const [method, path] = route.trim().split(" ");
       const safeMethod = path ? method.toUpperCase() : endpoint.method;
       const safePath = parseTemplate(path ?? method).expand(options);
 
@@ -22,10 +22,9 @@ export function parse(endpoint: WithDefaults<Context>) {
   };
 }
 
-function splitParams(
-  content: Context
-): readonly [RequestParameters, ExpandParameters] {
-  return splitObj(content, ["method", "url", "headers"]);
+function splitParams(ctx: Context): [RequestParameters, ExpandParameters] {
+  const [params, options] = splitObj(ctx, ["method", "url", "headers"]);
+  return delete options["baseUrl"], [params, options];
 }
 
 type ExpandParameters = Parameters<Template["expand"]>[0];
@@ -43,7 +42,7 @@ if (import.meta.vitest) {
       delete params.headers?.["user-agent"]; // Eliminate environmental impacts
       expect(params.headers).toEqual({ accept: "application/json" });
       expect(params.url).toBeUndefined();
-      expect(options.baseUrl).toEqual("https://api.themoviedb.org/3");
+      expect(options).toEqual({});
     });
   });
 

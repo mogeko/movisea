@@ -5,7 +5,7 @@ import { parse, type Context } from "@/parse";
 export async function request<T extends unknown>(
   route: string,
   opts: Context = {}
-): Promise<T | null> {
+): Promise<T> {
   const { url, ...options } = parser(route, opts);
   return (await fetch(url, options)).json();
 }

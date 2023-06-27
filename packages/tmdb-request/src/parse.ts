@@ -4,7 +4,7 @@ import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
 export function parse(ctxWithDefaults: WithDefaults<Context>) {
-  return (route: string, opts: Context = {}): Endpoint => {
+  return (route: string, opts: Context = {}) => {
     const [params, options] = splitParams(mergeDeep(ctxWithDefaults, opts));
 
     const [method, path] = route.trim().split(" ");
@@ -25,7 +25,6 @@ function splitParams(ctx: Context): [RequestParameters, ExpandParameters] {
 
 type ExpandParameters = Parameters<Template["expand"]>[0];
 export type Context = RequestParameters & ExpandParameters;
-export type Endpoint = Omit<RequestParameters, "url"> & { url: string };
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");

@@ -3,17 +3,17 @@ import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
-export function parse(endpoint: WithDefaults<Context>) {
+export function parse(ctxWithDefaults: WithDefaults<Context>) {
   return (route?: string, opts: Context = {}) => {
-    const [params, options] = splitParams(mergeDeep(endpoint, opts));
+    const [params, options] = splitParams(mergeDeep(ctxWithDefaults, opts));
 
     if (typeof route === "string") {
       const [method, path] = route.trim().split(" ");
-      const safeMethod = path ? method.toUpperCase() : endpoint.method;
+      const safeMethod = path ? method.toUpperCase() : ctxWithDefaults.method;
       const safePath = parseTemplate(path ?? method).expand(options);
 
       return Object.assign(params, {
-        url: endpoint.baseUrl + safePath,
+        url: ctxWithDefaults.baseUrl + safePath,
         method: safeMethod,
       });
     } else {

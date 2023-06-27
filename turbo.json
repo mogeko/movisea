@@ -1,8 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "dev": { "cache": false, "persistent": true },
+    "dev": { "dependsOn": ["^build"], "cache": false, "persistent": true },
     "build": {
+      "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "dotEnv": [".env.local"]
     },

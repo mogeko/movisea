@@ -1,4 +1,4 @@
-import type { Endpoint, RequestMethod, RequestParameters } from "@/defaults";
+import type { RequestParameters, WithDefaults } from "@/defaults";
 import { pick } from "@/pick";
 import { parseTemplate, type Template } from "url-template";
 
@@ -12,7 +12,7 @@ export function parse(endpoint: Endpoint) {
       const path = parseTemplate(_path ?? _method).expand(opts);
 
       return pick_params({
-        method: method as RequestMethod,
+        method: method,
         url: otherEndpoint.baseUrl + path,
         ...otherEndpoint,
       } as Context);
@@ -26,7 +26,9 @@ const pick_params = (opts: Context): RequestParameters => {
   return pick(opts, ["method", "url", "headers"]);
 };
 
-export type Context = Parameters<Template["expand"]>[0];
+type ExpandParameters = Parameters<Template["expand"]>[0];
+export type Context = RequestParameters & ExpandParameters;
+export type Endpoint = WithDefaults<Context>;
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");

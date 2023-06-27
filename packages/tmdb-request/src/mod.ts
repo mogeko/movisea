@@ -1,6 +1,7 @@
 import { DEFAULTS } from "@/defaults";
-import { mergeDeep } from "@/merge-deep";
 import { parse, type Context } from "@/parse";
+
+export const parser = parse(DEFAULTS);
 
 export async function request<T extends unknown>(
   route: string,
@@ -8,8 +9,4 @@ export async function request<T extends unknown>(
 ): Promise<T> {
   const { url, ...options } = parser(route, opts);
   return (await fetch(url, options)).json();
-}
-
-export function parser(route: string, opts: Context = {}) {
-  return parse(mergeDeep(DEFAULTS, opts))(route, opts);
 }

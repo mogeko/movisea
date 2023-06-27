@@ -1,6 +1,6 @@
 {
   "name": "tmdb-request",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "description": "A simple wrapper for the TMDb API",
   "author": {
@@ -28,7 +28,8 @@
   "type": "module",
   "files": [
     "!dist/*.map",
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup",

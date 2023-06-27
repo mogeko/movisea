@@ -1,3 +1,117 @@
 # tmdb-request.js
 
 A simple wrapper for the [The Movie Database API](https://developer.themoviedb.org/reference/intro/getting-started).
+
+It use [RFC 6570 URI Template specification](https://www.rfc-editor.org/rfc/rfc6570) to build the API endpoints and [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get the data.
+
+## Installation
+
+By install with [npm](https://www.npmjs.com/package/npm), [yarn](https://yarnpkg.com), [pnpm](https://pnpm.io) or any other package manager that you use.
+
+```shell
+pnpm add tmdb-request
+```
+
+> **Note**
+>
+> Make sure you Node.js environment has [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) support. If not, you can use [node-fetch](https://www.npmjs.com/package/node-fetch) or [cross-fetch](https://www.npmjs.com/package/cross-fetch) to polyfill it.
+>
+> If you use framework like [Next.js](https://nextjs.org), you should not need to worry about this. They usually have an out-of-the-box Fetch API implementation.
+
+## Usage
+
+First, You need to apply an API Token from [TMDb](https://www.themoviedb.org/settings/api). It's **completely free**, you just need to register an account.
+
+We need thanks TMDb provide this great service for us, so please **do not abuse** the API.
+
+### GET request example
+
+This library 1:1 mapping of REST API endpoints in the [The Movie Database API Reference](https://developer.themoviedb.org/reference/intro/getting-started).
+
+For example, to get the details of a movie, you would do:
+
+```js
+import { request } from "tmdb-request";
+
+// The default method is GET, so you can omit it.
+const result = request("/movie/{movie_id}?language={lang}", {
+  headers: {
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  },
+  movie_id: 10997,
+  lang: "en-US",
+});
+
+console.log(result);
+```
+
+### POST request example
+
+You can also use `POST` request to interact with TMDb Server.
+
+For example, to rate a movie, you would do:
+
+```js
+import { request } from "tmdb-request";
+
+const result = request("POST /movie/{movie_id}/rating", {
+  headers: {
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "content-type": "application/json;charset=utf-8",
+  },
+  body: JSON.stringify(data),
+  movie_id: 10997,
+});
+
+console.log(result);
+```
+
+### Working with `axios`
+
+If you prefer to use other HTTP client, like [axios](https://axios-http.com).
+
+You can use `parser` function to only parse the URL.
+
+```js
+import { parser } from "tmdb-request";
+
+parser("GET /movie/{movie_id}?language={lang}", {
+  headers: {
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  },
+  movie_id: 10997,
+  lang: "en-US",
+});
+```
+
+It will result like:
+
+```js
+{
+  url: "https://api.themoviedb.org/3/movie/10997?language=en-US",
+  headers: {
+    accept: "application/json",
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user-agent": "Node.js/20.3.1 (Linux x64)",
+  },
+  method: "GET",
+}
+```
+
+Then you can use it with you HTTP client.
+
+## API
+
+### `request(route, opts)` and `parser(route, opts)`
+
+Both `request` and `parser` function have the same arguments. The only difference is that `request` will **send the request** and return the result, while `parser` will **only parse the URL** and return the request information.
+
+| Name           | Type     | Description                                                                                                                                                                                       |
+| -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `route`        | `string` | It has to be a string consisting of [URL Template](https://www.rfc-editor.org/rfc/rfc6570) and the request method, e.g. `GET /movie/{id}`. If it’s set to a URL, only the method defaults to GET. |
+| `opts.method`  | `string` | Required unless route is set. supported `GET`, `POST` and `DELETE`. Defaults to `GET`.                                                                                                            |
+| `opts.headers` | `object` | Custom headers to send with the request. **Only `authorization` header is required.** By default, it will set `accept` to `application/json` and `user-agent` to suitably value.                  |
+
+## License
+
+The code in this project is released under the [MIT License](./LICENSE).

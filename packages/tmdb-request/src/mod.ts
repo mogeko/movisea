@@ -7,12 +7,7 @@ export async function request<T extends unknown>(
   opts: Context = {}
 ): Promise<T | null> {
   const { url, ...options } = parser(route, opts);
-
-  if (url) {
-    return (await fetch(url, options)).json();
-  }
-
-  return null;
+  return (await fetch(url, options)).json();
 }
 
 export function parser(route: string, opts: Context = {}) {

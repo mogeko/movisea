@@ -19,4 +19,8 @@ export type RequestParameters = {
   url?: string;
 };
 
-export type WithDefaults<T extends unknown> = T & typeof DEFAULTS;
+export type WithDefaults<T extends unknown> = {
+  -readonly [K in keyof typeof DEFAULTS]: K extends keyof T
+    ? T[K]
+    : (typeof DEFAULTS)[K];
+} & T;

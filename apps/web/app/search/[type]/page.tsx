@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { request } from "tmdb-request";
 
 import { tokens } from "@/config/tokens";
 import type { XOR } from "@/lib/utils";
@@ -11,10 +12,8 @@ const SearchPage: React.FC<{
   params: { type: string };
 }> = async ({ searchParams: { q, page }, params }) => {
   const data = await getSearchInfo(params.type, {
+    page: page?.toString(),
     query: q,
-    include_adult: "false",
-    language: "en-US",
-    page: page?.toString() ?? "1",
   });
 
   return (
@@ -59,18 +58,17 @@ const SearchPage: React.FC<{
 };
 
 const getSearchInfo = async (type: string, params: SearchParams) => {
-  const searchParams = new URLSearchParams(params);
-
-  return (await fetch(
-    `https://api.themoviedb.org/3/search/${type}?${searchParams.toString()}`,
+  return await request<SearchInfo>(
+    "/search/{type}?query={query}&include_adult={include_adult}&language={language}&page={page}",
     {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${tokens.tmdb}`,
-        accept: "application/json",
-      },
+      headers: { authorization: `Bearer ${tokens.tmdb}` },
+      query: params.query,
+      include_adult: params.include_adult ?? "false",
+      language: params.language ?? "en-US",
+      page: params.page ?? "1",
+      type: type,
     }
-  ).then((res) => res.json())) as Promise<SearchInfo>;
+  );
 };
 
 type SearchParams = {

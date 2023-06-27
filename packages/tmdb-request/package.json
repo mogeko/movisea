@@ -37,7 +37,8 @@
     "cov": "vitest run --coverage",
     "type-check": "tsc --noEmit",
     "lint": "prettier --check \"src/**/*.{js,ts}\" --cache",
-    "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache"
+    "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache",
+    "release": "pnpm publish --access public"
   },
   "dependencies": {
     "is-plain-object": "^5.0.0",

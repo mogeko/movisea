@@ -28,5 +28,5 @@ jobs:
           key: ${{ runner.os }}-turbo-test-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-turbo-
       - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm cov
+      - run: pnpm run lint
+      - run: pnpm run cov

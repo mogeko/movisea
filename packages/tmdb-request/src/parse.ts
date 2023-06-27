@@ -3,22 +3,18 @@ import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
-export function parse(endpoint: WithDefaults<Context>) {
-  return (route?: string, opts: Context = {}) => {
-    const [params, options] = splitParams(mergeDeep(endpoint, opts));
+export function parse(ctxWithDefaults: WithDefaults<Context>) {
+  return (route: string, opts: Context = {}): Endpoint => {
+    const [params, options] = splitParams(mergeDeep(ctxWithDefaults, opts));
 
-    if (typeof route === "string") {
-      const [method, path] = route.trim().split(" ");
-      const safeMethod = path ? method.toUpperCase() : endpoint.method;
-      const safePath = parseTemplate(path ?? method).expand(options);
+    const [method, path] = route.trim().split(" ");
+    const safeMethod = path ? method.toUpperCase() : ctxWithDefaults.method;
+    const safePath = parseTemplate(path ?? method).expand(options);
 
-      return Object.assign(params, {
-        url: endpoint.baseUrl + safePath,
-        method: safeMethod,
-      });
-    } else {
-      return Object.assign(params, route);
-    }
+    return Object.assign(params, {
+      url: ctxWithDefaults.baseUrl + safePath,
+      method: safeMethod,
+    });
   };
 }
 
@@ -29,6 +25,7 @@ function splitParams(ctx: Context): [RequestParameters, ExpandParameters] {
 
 type ExpandParameters = Parameters<Template["expand"]>[0];
 export type Context = RequestParameters & ExpandParameters;
+export type Endpoint = Omit<RequestParameters, "url"> & { url: string };
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");
@@ -60,11 +57,6 @@ if (import.meta.vitest) {
       const endpoint2 = parser("POST /foo/{bar}", { bar: "baz" });
 
       expect(endpoint2.method).toEqual("POST");
-
-      expect(parser()).toEqual({
-        method: DEFAULTS.method,
-        headers: DEFAULTS.headers,
-      });
     });
   });
 }

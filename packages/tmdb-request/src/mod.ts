@@ -10,3 +10,5 @@ export async function request(route: string, opts = {}) {
 
   return (await fetch(url, options)).json();
 }
+
+export type { Endpoint } from "@/parse";

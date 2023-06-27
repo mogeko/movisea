@@ -1,10 +1,36 @@
 {
   "name": "tmdb-request",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A simple wrapper for the TMDb API",
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/movisea.git",
+    "directory": "packages/tmdb-request"
+  },
+  "homepage": "https://github.com/mogeko/movisea/tree/master/packages/tmdb-request#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/movisea/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "keywords": [
+    "themoviedb",
+    "tmdb",
+    "api"
+  ],
+  "license": "MIT",
   "main": "dist/tmdb-request.js",
   "types": "dist/tmdb-request.d.ts",
+  "type": "module",
+  "files": [
+    "!dist/*.map",
+    "dist",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -19,6 +45,7 @@
     "url-template": "^3.1.0"
   },
   "devDependencies": {
+    "@types/node": "20.2.5",
     "@vitest/coverage-v8": "^0.32.2",
     "tsup": "^7.1.0",
     "typescript": "^5.1.3",

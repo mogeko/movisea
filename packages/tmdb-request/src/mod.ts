@@ -1,6 +1,6 @@
 import { DEFAULTS } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
-import { parse, type Context, type Endpoint } from "@/parse";
+import { parse, type Context } from "@/parse";
 
 export async function request<T extends unknown>(
   route: string,
@@ -16,5 +16,5 @@ export async function request<T extends unknown>(
 }
 
 export function parser(route: string, opts: Context = {}) {
-  return parse(mergeDeep(DEFAULTS, opts) as Endpoint)(route, opts);
+  return parse(mergeDeep(DEFAULTS, opts))(route, opts);
 }

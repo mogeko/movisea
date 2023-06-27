@@ -1,13 +1,19 @@
 // @ts-ignore
 import { isPlainObject } from "is-plain-object";
 
-export function mergeDeep(lObj: any, rObj: any): object {
-  const result = Object.assign({}, lObj);
+export function mergeDeep<
+  L extends Record<string, any>,
+  R extends Record<string, any>
+>(lObj: L, rObj: R): L & R {
+  const result = Object.assign({}, lObj) as any;
 
   Object.keys(rObj).forEach((key) => {
     if (isPlainObject(rObj[key])) {
-      if (!(key in lObj)) Object.assign(result, { [key]: rObj[key] });
-      else result[key] = mergeDeep(lObj[key], rObj[key]);
+      if (!(key in lObj)) {
+        Object.assign(result, { [key]: rObj[key] });
+      } else {
+        result[key] = mergeDeep(lObj[key], rObj[key]);
+      }
     } else {
       Object.assign(result, { [key]: rObj[key] });
     }

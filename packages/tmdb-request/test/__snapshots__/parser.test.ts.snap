@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parser > should parse route 1`] = `
+{
+  "headers": {
+    "accept": "application/json",
+    "authorization": "xxx",
+  },
+  "method": "GET",
+  "url": "https://api.themoviedb.org/3/foo/baz",
+}
+`;

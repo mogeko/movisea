@@ -1,13 +1,20 @@
-export function request() {
-  return "Hello World";
+import { DEFAULTS } from "@/defaults";
+import { mergeDeep } from "@/merge-deep";
+import { parse, type Context } from "@/parse";
+
+export async function request<T extends unknown>(
+  route: string,
+  opts: Context = {}
+): Promise<T | null> {
+  const { url, ...options } = parser(route, opts);
+
+  if (url) {
+    return (await fetch(url, options)).json();
+  }
+
+  return null;
 }
 
-if (import.meta.vitest) {
-  const { describe, it, expect } = await import("vitest");
-
-  describe("main", () => {
-    it("should return Hello World", () => {
-      expect(request()).toBe("Hello World");
-    });
-  });
+export function parser(route: string, opts: Context = {}) {
+  return parse(mergeDeep(DEFAULTS, opts))(route, opts);
 }

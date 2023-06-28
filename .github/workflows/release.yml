@@ -4,6 +4,12 @@ on:
   push:
     branches: ["master"]
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   relsease:
     name: Publish to NPM

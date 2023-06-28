@@ -100,17 +100,59 @@ It will result like:
 
 Then you can use it with you HTTP client.
 
-## API
+### omit the `route` argument
 
-### `request(route, opts)` and `parser(route, opts)`
+We also allow you to omit the `route` parameter and [only pass the `endpoint` (`opts`) parameter](#requestendpoint-and-parserendpoint).
+
+In this case, we will use the `endpoint.url` as the `route` parameter, so the `url` field is required.
+
+This feature is implemented by TypeScript's [function overloading](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads).
+
+```js
+import { parser, request } from "tmdb-request";
+
+// For request function
+request({
+  url: "GET /movie/{movie_id}?language={lang}",
+  headers: {
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  },
+  movie_id: 10997,
+  lang: "en-US",
+});
+
+// For parser function
+parser({
+  url: "POST /movie/{movie_id}/rating",
+  headers: {
+    authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "content-type": "application/json;charset=utf-8",
+  },
+  body: JSON.stringify(data),
+  movie_id: 10997,
+});
+```
+
+## API
 
 Both `request` and `parser` function have the same arguments. The only difference is that `request` will **send the request** and return the result, while `parser` will **only parse the URL** and return the request information.
 
-| Name           | Type     | Description                                                                                                                                                                                       |
-| -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `route`        | `string` | It has to be a string consisting of [URL Template](https://www.rfc-editor.org/rfc/rfc6570) and the request method, e.g. `GET /movie/{id}`. If it’s set to a URL, only the method defaults to GET. |
-| `opts.method`  | `string` | Required unless route is set. supported `GET`, `POST` and `DELETE`. Defaults to `GET`.                                                                                                            |
-| `opts.headers` | `object` | Custom headers to send with the request. **Only `authorization` header is required.** By default, it will set `accept` to `application/json` and `user-agent` to suitably value.                  |
+### `request(route, opts)` and `parser(route, opts)`
+
+| Name           | Type        | Description                                                                                                                                                                                                                                                                            |
+| -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `route`        | `string`    | It has to be a string consisting of [URL Template](https://www.rfc-editor.org/rfc/rfc6570) and the request method, e.g. `GET /movie/{id}`. If it’s set to a URL, only the method defaults to GET.                                                                                      |
+| `opts.method`  | `string`    | Required unless route is set. supported `GET`, `POST` and `DELETE`. Defaults to `GET`.                                                                                                                                                                                                 |
+| `opts.headers` | `object`    | Custom headers to send with the request. **Only `authorization` header is required.** By default, it will set `accept` to `application/json` and `user-agent` to suitably value.                                                                                                       |
+| `otp.url`      | `undefined` | **Unrecommended.** To be honest, it is an useless field, because it will be [overwritten by the `route` parameter](https://github.com/mogeko/movisea/blob/7a171ca35aa9b4f53deb066f36edf457f3dd7189/packages/tmdb-request/test/parser.test.ts#L38) always. **You should NEVER use it**. |
+
+### `request(endpoint)` and `parser(endpoint)`
+
+| Name               | Type     | Description                                                                                                                                                       |
+| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `endpoint.url`     | `string` | In this case, the `url` field is required. We will use it to parse the URL and request method. It is equivalent to the `route` parameter in the previous chapter. |
+| `endpoint.method`  | `string` | Same as the previous article.                                                                                                                                     |
+| `endpoint.headers` | `object` | Same as the previous article.                                                                                                                                     |
 
 ## License
 

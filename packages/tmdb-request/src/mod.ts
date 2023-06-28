@@ -1,14 +1,16 @@
 import { DEFAULTS, type RequestParameters } from "@/defaults";
 import { parse, type Context } from "@/parse";
 
+async function fetcher({ url, ...options }: Endpoint) {
+  return (await fetch(url, options)).json();
+}
+
 export async function request<T>(route: string, opts: Context): Promise<T>;
 export async function request<T>(endpoint: EndpointParameters): Promise<T>;
 export async function request(route: string, opts: Context): Promise<any>;
 export async function request(endpoint: EndpointParameters): Promise<any>;
 export async function request(route: string | EndpointParameters, opts = {}) {
-  const { url, ...options } = parser(route as any, opts);
-
-  return (await fetch(url, options)).json();
+  return fetcher(parser(route as any, opts));
 }
 
 export function parser(route: string, opts?: Context): Endpoint;

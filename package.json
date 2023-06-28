@@ -23,8 +23,7 @@
     "cov": "turbo run cov",
     "type-check": "turbo run type-check",
     "lint": "turbo run lint",
-    "fmt": "turbo run fmt",
-    "release": "turbo run release"
+    "fmt": "turbo run fmt"
   },
   "workspaces": [
     "apps/*",

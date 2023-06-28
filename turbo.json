@@ -12,8 +12,7 @@
     "cov": { "dependsOn": ["^build"], "outputs": [] },
     "type-check": { "outputs": [] },
     "lint": { "outputs": [] },
-    "fmt": { "cache": false, "outputs": [] },
-    "release": { "dependsOn": ["build"], "cache": false, "outputs": [] }
+    "fmt": { "cache": false, "outputs": [] }
   },
   "globalDependencies": [".prettierrc.cjs", ".eslintrc.json"],
   "globalEnv": ["NODE_ENV"]

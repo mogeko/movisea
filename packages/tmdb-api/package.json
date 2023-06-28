@@ -1,7 +1,7 @@
 {
   "name": "tmdb-api",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "main": "dist/tmdb-api.js",
   "types": "dist/tmdb-api.d.ts",

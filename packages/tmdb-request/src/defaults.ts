@@ -15,7 +15,7 @@ export type RequestParameters = {
     accept?: string;
     authorization?: string;
     "user-agent"?: string;
-  };
+  } & Record<string, string>;
   url?: string;
 };
 

@@ -1,5 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`parser > should parse endpoint 1`] = `
+{
+  "headers": {
+    "accept": "application/json",
+    "authorization": "xxx",
+    "content-type": "application/json",
+  },
+  "method": "POST",
+  "url": "https://api.themoviedb.org/3/foo/baz",
+}
+`;
+
 exports[`parser > should parse route 1`] = `
 {
   "headers": {

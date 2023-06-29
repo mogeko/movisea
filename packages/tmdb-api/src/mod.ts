@@ -25,7 +25,7 @@ export class TMDb {
     return request(route, mergeDeep(this._defaultOpts, opts));
   }
 
-  public parse(route: string, opts: Options = {}) {
+  public parser(route: string, opts: Options = {}) {
     return parser(route, mergeDeep(this._defaultOpts, opts));
   }
 }

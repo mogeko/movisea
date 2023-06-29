@@ -2,23 +2,25 @@
 
 exports[`parser > should parse endpoint 1`] = `
 {
+  "baseUrl": "https://api.themoviedb.org/3",
   "headers": {
     "accept": "application/json",
     "authorization": "xxx",
     "content-type": "application/json",
   },
   "method": "POST",
-  "url": "https://api.themoviedb.org/3/foo/baz",
+  "url": "/foo/baz",
 }
 `;
 
 exports[`parser > should parse route 1`] = `
 {
+  "baseUrl": "https://api.themoviedb.org/3",
   "headers": {
     "accept": "application/json",
     "authorization": "xxx",
   },
   "method": "GET",
-  "url": "https://api.themoviedb.org/3/foo/baz",
+  "url": "/foo/baz",
 }
 `;

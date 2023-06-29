@@ -1,21 +1,21 @@
 import { DEFAULTS, type RequestParams } from "@/defaults";
-import { parse, type Context } from "@/parse";
+import { parse, type Options } from "@/parse";
 
-async function fetcher({ url, ...options }: Endpoint) {
-  return (await fetch(url, options)).json();
+async function fetcher({ baseUrl, url, ...params }: Context) {
+  return (await fetch(baseUrl + url, params)).json();
 }
 
-export async function request<T>(route: string, opts: Context): Promise<T>;
-export async function request<T>(endpoint: EndpointParams): Promise<T>;
-export async function request(route: string, opts: Context): Promise<any>;
-export async function request(endpoint: EndpointParams): Promise<any>;
-export async function request(route: string | EndpointParams, opts?: Context) {
+export async function request<T>(route: string, opts: Options): Promise<T>;
+export async function request<T>(endpoint: Endpoint): Promise<T>;
+export async function request(route: string, opts: Options): Promise<any>;
+export async function request(endpoint: Endpoint): Promise<any>;
+export async function request(route: string | Endpoint, opts?: Options) {
   return fetcher(parser(route as any, opts));
 }
 
-export function parser(route: string, opts?: Context): Endpoint;
-export function parser(endpoint: EndpointParams): Endpoint;
-export function parser(route: string | EndpointParams, opts?: Context) {
+export function parser(route: string, opts?: Options): Context;
+export function parser(endpoint: Endpoint): Context;
+export function parser(route: string | Endpoint, opts?: Options) {
   const parserInside = parse(DEFAULTS);
 
   if (typeof route === "string") {
@@ -26,5 +26,5 @@ export function parser(route: string | EndpointParams, opts?: Context) {
 }
 
 type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
-export type EndpointParams = RequiredFields<Context, "url">;
-export type Endpoint = RequiredFields<RequestParams, "url">;
+export type Endpoint = RequiredFields<Options, "url">;
+export type Context = RequiredFields<RequestParams, "baseUrl" | "url">;

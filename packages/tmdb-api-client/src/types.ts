@@ -26,7 +26,7 @@ type Assoc<P extends string[], D> = P extends [
   ? { [K in F]: Assoc<R extends string[] ? R : never, D> }
   : D;
 
-export type MovieDetailsData = {
+type MovieDetailsResult = {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null;
@@ -74,8 +74,13 @@ export type MovieDetailsData = {
   vote_average: number;
   vote_count: number;
 };
+type MovieDetailsParams = {
+  append_to_response?: string;
+  language?: string;
+  id: number;
+};
 
-export type SearchMulitData = {
+type SearchMulitResult = {
   page: number;
   results: Array<
     XOR<
@@ -108,18 +113,22 @@ export type SearchMulitData = {
   total_pages: number;
   total_results: number;
 };
+type SearchMulitParams = {};
 
-export type SearchMovieData = {};
+type SearchMovieResult = {};
+type SearchMovieParams = {};
 
-export type SearchTVData = {};
+type SearchTVResult = {};
+type SearchTVParams = {};
 
-export type RestData = Assoc<["movie", "details"], MovieDetailsData> &
-  Assoc<["search", "multi"], SearchMulitData> &
-  Assoc<["search", "movie"], SearchMovieData> &
-  Assoc<["search", "tv"], SearchTVData>;
+export type RestInterface = Assoc<
+  ["movie", "details"],
+  (params: MovieDetailsParams) => MovieDetailsResult
+> &
+  Assoc<["search", "multi"], (params: SearchMulitParams) => SearchMulitResult> &
+  Assoc<["search", "movie"], (params: SearchMovieParams) => SearchMovieResult> &
+  Assoc<["search", "tv"], (params: SearchTVParams) => SearchTVResult>;
 
-export type RestInterface<P = any, R = RestData> = {
-  [T in keyof R]: {
-    [S in keyof R[T]]: (params: P) => R[T][S];
-  };
+export type Recur<R> = {
+  [T in keyof R]: { [S in keyof R[T]]: R[T][S] };
 };

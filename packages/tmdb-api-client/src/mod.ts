@@ -1,5 +1,5 @@
 import { ENDPOINTS } from "@/endpoints";
-import type { RestInterface } from "@/types";
+import type { Recur, RestInterface } from "@/types";
 import { parser, request, type Options } from "tmdb-request";
 import { mergeDeep } from "tmdb-request/merge-deep";
 
@@ -10,7 +10,7 @@ export class TMDB {
     this._defaultOpts = { headers: { authorization: auth } };
   }
 
-  public rest: RestInterface = Object.fromEntries(
+  public rest: Recur<RestInterface> = Object.fromEntries(
     Object.entries(ENDPOINTS).map(([topLevelKey, subs]) => [
       topLevelKey,
       Object.fromEntries(

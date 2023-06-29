@@ -1,5 +1,11 @@
 # tmdb-request
 
+## 1.2.0
+
+### Minor Changes
+
+- [#16](https://github.com/mogeko/movisea/pull/16) [`3698e8d`](https://github.com/mogeko/movisea/commit/3698e8dfcb77f465519b84287ca95c464106d048) Thanks [@mogeko](https://github.com/mogeko)! - The parsing results will distinguish between `baseUrl` and `url`.
+
 ## 1.1.1
 
 ### Patch Changes

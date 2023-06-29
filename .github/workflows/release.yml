@@ -10,9 +10,6 @@ permissions:
   contents: write
   pull-requests: write
 
-env:
-  NODE_ENV: production
-
 jobs:
   relsease:
     name: Publish to NPM
@@ -28,7 +25,7 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install -rw
       - run: pnpm run build
       - name: Create Version PR or Publish to NPM
         id: changesets
@@ -41,3 +38,4 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: "production"

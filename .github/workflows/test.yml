@@ -27,6 +27,6 @@ jobs:
           path: ${{ github.workspace }}/node_modules/.cache/turbo
           key: ${{ runner.os }}-turbo-test-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-turbo-
-      - run: pnpm install
+      - run: pnpm install -rw
       - run: pnpm run lint
       - run: pnpm run cov

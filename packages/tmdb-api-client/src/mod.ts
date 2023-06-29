@@ -1,4 +1,5 @@
 import { ENDPOINTS } from "@/endpoints";
+import type { RestInterface } from "@/types";
 import { parser, request, type Options } from "tmdb-request";
 import { mergeDeep } from "tmdb-request/merge-deep";
 
@@ -9,17 +10,17 @@ export class TMDB {
     this._defaultOpts = { headers: { authorization: auth } };
   }
 
-  public rest = Object.fromEntries(
+  public rest: RestInterface = Object.fromEntries(
     Object.entries(ENDPOINTS).map(([topLevelKey, subs]) => [
       topLevelKey,
       Object.fromEntries(
         Object.entries(subs).map(([subLevelKey, [route, opts]]) => [
           subLevelKey,
-          (params) => this.request(route, mergeDeep(opts, params)),
+          (params: any) => this.request(route, mergeDeep(opts, params)),
         ])
       ),
     ])
-  ) as Rest;
+  ) as any;
 
   public request(route: string, opts: Options = {}) {
     return request(route, mergeDeep(this._defaultOpts, opts));
@@ -29,10 +30,3 @@ export class TMDB {
     return parser(route, mergeDeep(this._defaultOpts, opts));
   }
 }
-
-type RestMethod = (params: any) => ReturnType<TMDB["request"]>;
-type Rest = {
-  [K in keyof typeof ENDPOINTS]: {
-    [K2 in keyof (typeof ENDPOINTS)[K]]: RestMethod;
-  };
-};

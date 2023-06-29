@@ -1,4 +1,32 @@
-export type MovieDetails = {
+/**
+ * @example
+ * ```ts
+ * type FooOrBar = XOR<{foo: string;}, {bar: number}>
+ * FooOrBar<{ foo: "test" }> // OK
+ * FooOrBar<{ bar: 1 }> // OK
+ * FooOrBar<{ foo: "test",  bar: 1 }> // Error
+ * ```
+ */
+type XOR<T, U> = T | U extends object
+  ? (Without<T, U> & U) | (Without<U, T> & T)
+  : T | U;
+
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+/**
+ * @example
+ * ```ts
+ * type X = Assoc<["a", "b", "c"], number> // => {a: {b: {c: number } } }
+ * ```
+ */
+type Assoc<P extends string[], D> = P extends [
+  infer F extends string,
+  ...infer R
+]
+  ? { [K in F]: Assoc<R extends string[] ? R : never, D> }
+  : D;
+
+export type MovieDetailsData = {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null;
@@ -45,4 +73,53 @@ export type MovieDetails = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+};
+
+export type SearchMulitData = {
+  page: number;
+  results: Array<
+    XOR<
+      {
+        media_type: "movie";
+        title: string;
+        original_title: string;
+        release_date: string;
+      },
+      {
+        media_type: "tv";
+        name: string;
+        original_name: string;
+        first_air_date: string;
+        origin_country: string[];
+      }
+    > & {
+      ault: boolean;
+      backdrop_path: string;
+      id: number;
+      original_language: string;
+      overview: string;
+      poster_path: string;
+      genre_ids: number[];
+      popularity: number;
+      vote_average: number;
+      vote_count: number;
+    }
+  >;
+  total_pages: number;
+  total_results: number;
+};
+
+export type SearchMovieData = {};
+
+export type SearchTVData = {};
+
+export type RestData = Assoc<["movie", "details"], MovieDetailsData> &
+  Assoc<["search", "multi"], SearchMulitData> &
+  Assoc<["search", "movie"], SearchMovieData> &
+  Assoc<["search", "tv"], SearchTVData>;
+
+export type RestInterface<P = any, R = RestData> = {
+  [T in keyof R]: {
+    [S in keyof R[T]]: (params: P) => R[T][S];
+  };
 };

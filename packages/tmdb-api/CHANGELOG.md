@@ -1,5 +1,18 @@
 # tmdb-api
 
+## 0.1.0
+
+### Minor Changes
+
+- [#22](https://github.com/mogeko/movisea/pull/22) [`18c4ee4`](https://github.com/mogeko/movisea/commit/18c4ee46a40b2c0e739109f6d14b4709976401b2) Thanks [@mogeko](https://github.com/mogeko)! - Implement queries for each `Endpoints`
+
+### Patch Changes
+
+- [#22](https://github.com/mogeko/movisea/pull/22) [`70d4402`](https://github.com/mogeko/movisea/commit/70d4402b3cbfffe37f6fc72794858f0270810c42) Thanks [@mogeko](https://github.com/mogeko)! - Create a main class and implement the wrapping of parser and request
+
+- Updated dependencies [[`a87825e`](https://github.com/mogeko/movisea/commit/a87825e9ee8de8e817d21ac09c6b23612c07c48c), [`a87825e`](https://github.com/mogeko/movisea/commit/a87825e9ee8de8e817d21ac09c6b23612c07c48c)]:
+  - tmdb-request@1.2.2
+
 ## 0.0.6
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "tmdb-api",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "private": false,
   "type": "module",
   "description": "A HTTP client for TMDB APIs",

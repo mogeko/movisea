@@ -1,5 +1,13 @@
 # tmdb-request
 
+## 1.2.2
+
+### Patch Changes
+
+- [#22](https://github.com/mogeko/movisea/pull/22) [`a87825e`](https://github.com/mogeko/movisea/commit/a87825e9ee8de8e817d21ac09c6b23612c07c48c) Thanks [@mogeko](https://github.com/mogeko)! - Re-export `mergeDeep` function as `./merge-deep`
+
+- [#22](https://github.com/mogeko/movisea/pull/22) [`a87825e`](https://github.com/mogeko/movisea/commit/a87825e9ee8de8e817d21ac09c6b23612c07c48c) Thanks [@mogeko](https://github.com/mogeko)! - Re-export `Options` type for `request` and `parser` functions
+
 ## 1.2.1
 
 ### Patch Changes

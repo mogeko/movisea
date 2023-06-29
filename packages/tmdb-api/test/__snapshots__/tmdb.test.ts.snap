@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TMDb > should parse 1`] = `
+exports[`Re-exported form tmdb-request > should parse 1`] = `
 {
   "baseUrl": "https://api.themoviedb.org/3",
   "headers": {

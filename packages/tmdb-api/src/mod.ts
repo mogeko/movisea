@@ -36,13 +36,3 @@ type Rest = {
     [K2 in keyof (typeof ENDPOINTS)[K]]: RestMethod;
   };
 };
-
-if (import.meta.vitest) {
-  const { describe, it } = await import("vitest");
-
-  describe("TMDb", () => {
-    it.todo("should create a TMDb instance");
-    it.todo("should request");
-    it.todo("should parse");
-  });
-}

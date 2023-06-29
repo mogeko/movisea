@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const tmdb = new TMDb({ auth: "ONLY_FOR_TESTING" });
 
-describe("TMDb", () => {
+describe("Re-exported form tmdb-request", () => {
   beforeEach(() => (vi.resetAllMocks(), void 0));
 
   it("constructor", () => {
@@ -34,5 +34,24 @@ describe("TMDb", () => {
 
     delete context.headers?.["user-agent"];
     expect(context).toMatchSnapshot();
+  });
+});
+
+describe("TMDb REST API", () => {
+  beforeEach(() => (vi.resetAllMocks(), void 0));
+
+  it("should get movie details", async () => {
+    const spy = vi.spyOn(tmdb, "request").mockImplementation(async () => {
+      return { test: "test" };
+    });
+
+    const result = await tmdb.rest.movie.details({ id: 10997 });
+
+    expect(spy).toHaveBeenCalledOnce();
+    expect(spy).toHaveBeenCalledWith(
+      "GET /movie/{id}?append_to_response={append_to_response}&language={language}",
+      { language: "en-US", id: 10997 }
+    );
+    expect(result).toEqual({ test: "test" });
   });
 });

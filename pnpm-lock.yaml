@@ -209,7 +209,7 @@ importers:
         specifier: 5.1.3
         version: 5.1.3
 
-  packages/tmdb-api:
+  packages/tmdb-api-client:
     dependencies:
       tmdb-request:
         specifier: workspace:^

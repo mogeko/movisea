@@ -1,5 +1,5 @@
 {
-  "name": "tmdb-api",
+  "name": "tmdbs-api-client",
   "version": "0.1.0",
   "private": false,
   "type": "module",

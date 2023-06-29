@@ -2,6 +2,7 @@
   "name": "tmdb-request",
   "version": "1.1.1",
   "private": false,
+  "type": "module",
   "description": "A simple wrapper for the TMDb API",
   "author": {
     "name": "Zheng Junyi",
@@ -25,7 +26,10 @@
   "license": "MIT",
   "main": "dist/tmdb-request.js",
   "types": "dist/tmdb-request.d.ts",
-  "type": "module",
+  "exports": {
+    "require": "./dist/tmdb-request.cjs",
+    "import": "./dist/tmdb-request.js"
+  },
   "files": [
     "!dist/*.map",
     "dist",

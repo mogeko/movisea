@@ -5,7 +5,7 @@ export default defineConfig({
   entryPoints: {
     "tmdb-request": path.resolve(__dirname, "src/mod.ts"),
   },
-  format: ["esm"],
+  format: ["esm", "cjs"],
   clean: true,
   dts: true,
 

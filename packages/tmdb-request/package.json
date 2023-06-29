@@ -1,6 +1,6 @@
 {
   "name": "tmdb-request",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": false,
   "description": "A simple wrapper for the TMDb API",
   "author": {

@@ -1,5 +1,12 @@
 # movisea-stories
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - movisea-web@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

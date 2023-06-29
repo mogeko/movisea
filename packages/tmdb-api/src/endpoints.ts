@@ -1,4 +1,4 @@
-export const endpoints = {
+export const ENDPOINTS = {
   movie: {
     details: [
       "GET /movie/{id}?append_to_response={append_to_response}&language={language}",

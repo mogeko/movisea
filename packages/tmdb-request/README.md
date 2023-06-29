@@ -88,13 +88,14 @@ It will result like:
 
 ```js
 {
-  url: "https://api.themoviedb.org/3/movie/10997?language=en-US",
+  baseUrl: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
     authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "user-agent": "Node.js/20.3.1 (Linux x64)",
   },
   method: "GET",
+  url: "/movie/10997?language=en-US",
 }
 ```
 
@@ -144,15 +145,17 @@ Both `request` and `parser` function have the same arguments. The only differenc
 | `route`        | `string`    | It has to be a string consisting of [URL Template](https://www.rfc-editor.org/rfc/rfc6570) and the request method, e.g. `GET /movie/{id}`. If it’s set to a URL, only the method defaults to GET.                                                                                      |
 | `opts.method`  | `string`    | Required unless route is set. supported `GET`, `POST` and `DELETE`. Defaults to `GET`.                                                                                                                                                                                                 |
 | `opts.headers` | `object`    | Custom headers to send with the request. **Only `authorization` header is required.** By default, it will set `accept` to `application/json` and `user-agent` to suitably value.                                                                                                       |
+| `opts.baseUrl` | `string`    | The custom base URL for the request. It will be prepended to the URL (parsed from the `route` parameter) when we make the request.                                                                                                                                                     |
 | `otp.url`      | `undefined` | **Unrecommended.** To be honest, it is an useless field, because it will be [overwritten by the `route` parameter](https://github.com/mogeko/movisea/blob/7a171ca35aa9b4f53deb066f36edf457f3dd7189/packages/tmdb-request/test/parser.test.ts#L38) always. **You should NEVER use it**. |
 
 ### `request(endpoint)` and `parser(endpoint)`
 
-| Name               | Type     | Description                                                                                                                                                       |
-| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `endpoint.url`     | `string` | In this case, the `url` field is required. We will use it to parse the URL and request method. It is equivalent to the `route` parameter in the previous chapter. |
-| `endpoint.method`  | `string` | Same as the previous article.                                                                                                                                     |
-| `endpoint.headers` | `object` | Same as the previous article.                                                                                                                                     |
+| Name               | Type     | Description                                                                                                                                                           |
+| ------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `endpoint.url`     | `string` | In this case, **the `url` field is required**. We will use it to parse the URL and request method. It is equivalent to the `route` parameter in the previous chapter. |
+| `endpoint.baseUrl` | `string` | Same as the previous article.                                                                                                                                         |
+| `endpoint.method`  | `string` | Same as the previous article.                                                                                                                                         |
+| `endpoint.headers` | `object` | Same as the previous article.                                                                                                                                         |
 
 ## License
 

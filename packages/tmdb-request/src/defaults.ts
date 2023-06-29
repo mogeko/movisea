@@ -16,11 +16,8 @@ export type RequestParams = {
     authorization?: string;
     "user-agent"?: string;
   } & Record<string, string>;
+  baseUrl?: string;
   url?: string;
 };
 
-export type WithDefaults<T extends unknown> = {
-  -readonly [K in keyof typeof DEFAULTS]: K extends keyof T
-    ? T[K]
-    : (typeof DEFAULTS)[K];
-} & T;
+export type WithDefaults<T> = typeof DEFAULTS & T;

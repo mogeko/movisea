@@ -9,7 +9,7 @@ describe("parser", () => {
     });
 
     expect(context.method).toEqual("GET");
-    expect(context.url).toEqual("https://api.themoviedb.org/3/foo/baz");
+    expect(context.url).toEqual("/foo/baz");
     expect(context.headers?.authorization).toEqual("xxx");
 
     delete context.headers?.["user-agent"];
@@ -27,7 +27,7 @@ describe("parser", () => {
     });
 
     expect(context.method).toEqual("POST");
-    expect(context.url).toEqual("https://api.themoviedb.org/3/foo/baz");
+    expect(context.url).toEqual("/foo/baz");
     expect(context.headers?.authorization).toEqual("xxx");
     expect(context.headers?.["content-type"]).toEqual("application/json");
 
@@ -38,6 +38,6 @@ describe("parser", () => {
   it("should be covered by route", () => {
     expect(
       parser("/foo/bar", { url: "This should be covered by route" }).url
-    ).toEqual("https://api.themoviedb.org/3/foo/bar");
+    ).toEqual("/foo/bar");
   });
 });

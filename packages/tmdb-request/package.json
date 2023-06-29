@@ -2,6 +2,7 @@
   "name": "tmdb-request",
   "version": "1.2.1",
   "private": false,
+  "type": "module",
   "description": "A simple wrapper for the TMDb API",
   "author": {
     "name": "Zheng Junyi",
@@ -25,7 +26,16 @@
   "license": "MIT",
   "main": "dist/tmdb-request.js",
   "types": "dist/tmdb-request.d.ts",
-  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/tmdb-request.js",
+      "types": "./dist/tmdb-request.d.ts"
+    },
+    "./merge-deep": {
+      "import": "./dist/merge-deep.js",
+      "types": "./dist/merge-deep.d.ts"
+    }
+  },
   "files": [
     "!dist/*.map",
     "dist",

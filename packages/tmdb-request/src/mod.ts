@@ -219,3 +219,5 @@ type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
 export type Endpoint = RequiredFields<Options, "url">;
 /** The result of {@link parser}. */
 export type Context = RequiredFields<RequestParams, "baseUrl" | "url">;
+
+export type { Options }; // Re-export the `Options` type.

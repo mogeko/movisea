@@ -2,7 +2,7 @@ import { ENDPOINTS } from "@/endpoints";
 import { parser, request, type Options } from "tmdb-request";
 import { mergeDeep } from "tmdb-request/merge-deep";
 
-export class TMDb {
+export class TMDB {
   private _defaultOpts: Options;
 
   constructor({ auth }: { auth: string }) {
@@ -30,7 +30,7 @@ export class TMDb {
   }
 }
 
-type RestMethod = (params: any) => ReturnType<TMDb["request"]>;
+type RestMethod = (params: any) => ReturnType<TMDB["request"]>;
 type Rest = {
   [K in keyof typeof ENDPOINTS]: {
     [K2 in keyof (typeof ENDPOINTS)[K]]: RestMethod;

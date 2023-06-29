@@ -1,7 +1,7 @@
-import { TMDb } from "@/mod";
+import { TMDB } from "@/mod";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const tmdb = new TMDb({ auth: "ONLY_FOR_TESTING" });
+const tmdb = new TMDB({ auth: "ONLY_FOR_TESTING" });
 
 describe("Re-exported form tmdb-request", () => {
   beforeEach(() => (vi.resetAllMocks(), void 0));
@@ -37,7 +37,7 @@ describe("Re-exported form tmdb-request", () => {
   });
 });
 
-describe("TMDb REST API", () => {
+describe("TMDB REST API", () => {
   beforeEach(() => (vi.resetAllMocks(), void 0));
 
   it("should get movie details", async () => {

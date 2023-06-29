@@ -20,9 +20,9 @@ pnpm add tmdb-request
 
 ## Usage
 
-First, You need to apply an API Token from [TMDb](https://www.themoviedb.org/settings/api). It's **completely free**, you just need to register an account.
+First, You need to apply an API Token from [TMDB](https://www.themoviedb.org/settings/api). It's **completely free**, you just need to register an account.
 
-We need thanks TMDb provide this great service for us, so please **do not abuse** the API.
+We need thanks TMDB provide this great service for us, so please **do not abuse** the API.
 
 ### GET request example
 
@@ -47,7 +47,7 @@ console.log(result);
 
 ### POST request example
 
-You can also use `POST` request to interact with TMDb Server.
+You can also use `POST` request to interact with TMDB Server.
 
 For example, to rate a movie, you would do:
 

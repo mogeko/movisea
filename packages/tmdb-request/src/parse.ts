@@ -45,14 +45,26 @@ if (import.meta.vitest) {
     it("should parse route", () => {
       expect(typeof parser).toBe("function");
 
-      const endpoint = parser("/foo/{bar}", { bar: "baz" });
+      const context1 = parser("/foo/{bar}", { bar: "baz" });
 
-      expect(endpoint.url).toEqual("/foo/baz");
-      expect(endpoint.method).toEqual("GET");
+      expect(context1.url).toEqual("/foo/baz");
+      expect(context1.method).toEqual("GET");
 
-      const endpoint2 = parser("POST /foo/{bar}", { bar: "baz" });
+      const context2 = parser("POST /foo/{bar}", { bar: "baz" });
 
-      expect(endpoint2.method).toEqual("POST");
+      expect(context2.method).toEqual("POST");
+    });
+
+    it("should parse route with custom baseUrl", () => {
+      expect(typeof parser).toBe("function");
+
+      expect(parser("/foo/{bar}", { bar: "baz" }).baseUrl).toEqual(
+        "https://api.themoviedb.org/3"
+      );
+
+      expect(
+        parser("/foo/{bar}", { bar: "baz", baseUrl: "https://foo.bar" }).baseUrl
+      ).toEqual("https://foo.bar");
     });
   });
 }

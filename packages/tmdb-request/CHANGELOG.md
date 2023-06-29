@@ -1,5 +1,11 @@
 # tmdb-request
 
+## 1.1.1
+
+### Patch Changes
+
+- [#13](https://github.com/mogeko/movisea/pull/13) [`9393959`](https://github.com/mogeko/movisea/commit/9393959f8e7fcba6fc3c9d5d23713655863d9bbd) Thanks [@mogeko](https://github.com/mogeko)! - Separate out fetch's wraper fetcher
+
 ## 1.1.0
 
 ### Minor Changes

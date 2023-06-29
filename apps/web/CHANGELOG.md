@@ -1,5 +1,12 @@
 # movisea-web
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`3698e8d`](https://github.com/mogeko/movisea/commit/3698e8dfcb77f465519b84287ca95c464106d048)]:
+  - tmdb-request@1.2.0
+
 ## 0.0.4
 
 ### Patch Changes

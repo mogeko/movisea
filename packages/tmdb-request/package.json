@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "private": false,
   "type": "module",
-  "description": "A simple wrapper for TMDB API",
+  "description": "A simple wrapper for TMDB APIs",
   "author": {
     "name": "Zheng Junyi",
     "email": "zhengjunyi@live.com"
@@ -37,6 +37,7 @@
     }
   },
   "files": [
+    "!dist/metafile-*.json",
     "!dist/*.map",
     "dist",
     "CHANGELOG.md"

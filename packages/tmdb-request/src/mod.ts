@@ -114,6 +114,15 @@ export function parser(route: string | Endpoint, opts?: Options) {
   }
 }
 
+/**
+ * Make fields `K` in `T` to required.
+ *
+ * @example
+ * ```ts
+ * type X = { a?: string; b?: number; c?: boolean };
+ * type Y = RequiredFields<X, "a" | "b">; // { a: string; b: number; c?: boolean; }
+ * ```
+ */
 type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
 export type Endpoint = RequiredFields<Options, "url">;
 export type Context = RequiredFields<RequestParams, "baseUrl" | "url">;

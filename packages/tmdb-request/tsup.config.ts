@@ -4,6 +4,7 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entryPoints: {
     "tmdb-request": path.resolve(__dirname, "src/mod.ts"),
+    "merge-deep": path.resolve(__dirname, "src/merge-deep.ts"),
   },
   format: ["esm"],
   clean: true,

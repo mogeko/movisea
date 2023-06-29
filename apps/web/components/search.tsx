@@ -86,7 +86,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
           {search !== "" && (
             <CommandItem value={search} onSelect={handleSubmit}>
               <LuCornerDownRight className="mr-2 h-4 w-4" />
-              <span>Search &rdquo;{search}&rdquo; on TMDb...</span>
+              <span>Search &rdquo;{search}&rdquo; on TMDB...</span>
             </CommandItem>
           )}
           <CommandGroup heading="Search History">

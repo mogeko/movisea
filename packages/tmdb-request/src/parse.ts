@@ -21,6 +21,7 @@ function splitParams(opts: Options): readonly [RequestParams, ExpandParams] {
 }
 
 type ExpandParams = Parameters<Template["expand"]>[0];
+/** The `opts` parameter of {@link request} and {@link parser}.*/
 export type Options = RequestParams & ExpandParams;
 
 if (import.meta.vitest) {

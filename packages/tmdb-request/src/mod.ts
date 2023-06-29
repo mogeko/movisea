@@ -4,10 +4,10 @@
  * A library for making requests to the TMDB API.
  *
  * @remarks
- * First, You need to apply an API Token from TMDb. It's **completely free**, you just need
+ * First, You need to apply an API Token from TMDB. It's **completely free**, you just need
  * to register an account.
  *
- * We need thanks TMDb provide this great service for us, so please **do not abuse** the API.
+ * We need thanks TMDB provide this great service for us, so please **do not abuse** the API.
  *
  * @see {@link https://developer.themoviedb.org/reference/intro/getting-started}
  * @see {@link https://www.themoviedb.org/settings/api}
@@ -219,3 +219,5 @@ type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
 export type Endpoint = RequiredFields<Options, "url">;
 /** The result of {@link parser}. */
 export type Context = RequiredFields<RequestParams, "baseUrl" | "url">;
+
+export type { Options }; // Re-export the `Options` type.

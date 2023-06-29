@@ -1,5 +1,15 @@
 # tmdb-request
 
+## 1.2.1
+
+### Patch Changes
+
+- [#18](https://github.com/mogeko/movisea/pull/18) [`0bfb3b1`](https://github.com/mogeko/movisea/commit/0bfb3b19ee76fcc89d33d9e200be815e50f60848) Thanks [@mogeko](https://github.com/mogeko)! - Add TSDoc/JSDoc for `request` function
+
+- [#18](https://github.com/mogeko/movisea/pull/18) [`18c06db`](https://github.com/mogeko/movisea/commit/18c06db12b40056c4f287046e89a2117b704f6e8) Thanks [@mogeko](https://github.com/mogeko)! - Add TSDoc/JSDoc for `parser` function
+
+- [#18](https://github.com/mogeko/movisea/pull/18) [`3d13fcc`](https://github.com/mogeko/movisea/commit/3d13fcc1b9456b45aba9026fc7621caae711182d) Thanks [@mogeko](https://github.com/mogeko)! - Supplement the TSDoc/JSDoc for enter functions
+
 ## 1.2.0
 
 ### Minor Changes

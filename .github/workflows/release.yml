@@ -33,7 +33,6 @@ jobs:
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
-          createGithubReleases: false
           version: node .github/changeset-version.js
           publish: pnpm changeset publish
         env:

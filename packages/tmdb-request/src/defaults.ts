@@ -9,7 +9,7 @@ export const DEFAULTS = {
   },
 } as const;
 
-export type RequestParameters = {
+export type RequestParams = {
   method?: "GET" | "POST" | "DELETE";
   headers?: {
     accept?: string;

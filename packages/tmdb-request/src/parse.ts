@@ -1,4 +1,4 @@
-import type { RequestParameters, WithDefaults } from "@/defaults";
+import type { RequestParams, WithDefaults } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
@@ -18,13 +18,13 @@ export function parse(ctxWithDefaults: WithDefaults<Context>) {
   };
 }
 
-function splitParams(ctx: Context): [RequestParameters, ExpandParameters] {
+function splitParams(ctx: Context): [RequestParams, ExpandParams] {
   const [params, options] = splitObj(ctx, ["method", "url", "headers"]);
   return delete options["baseUrl"], [params, options];
 }
 
-type ExpandParameters = Parameters<Template["expand"]>[0];
-export type Context = RequestParameters & ExpandParameters;
+type ExpandParams = Parameters<Template["expand"]>[0];
+export type Context = RequestParams & ExpandParams;
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");

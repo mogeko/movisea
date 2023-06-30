@@ -1,5 +1,13 @@
 # tmdbs-api-client
 
+## 0.1.1
+
+### Patch Changes
+
+- [`6e32e43`](https://github.com/mogeko/movisea/commit/6e32e43e32b6ab6b760f9190e57c0cb50964f402) Thanks [@mogeko](https://github.com/mogeko)! - Add Types for `SearchTVResult`.
+
+- [`78be03e`](https://github.com/mogeko/movisea/commit/78be03ee73a74d5d6963f03a076c6c7bc2da8ef8) Thanks [@mogeko](https://github.com/mogeko)! - Add type for SearchMovieResult
+
 ## 0.1.0
 
 ### Minor Changes

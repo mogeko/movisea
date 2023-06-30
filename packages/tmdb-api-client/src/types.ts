@@ -2,9 +2,9 @@
  * @example
  * ```ts
  * type FooOrBar = XOR<{foo: string;}, {bar: number}>
- * FooOrBar<{ foo: "test" }> // OK
- * FooOrBar<{ bar: 1 }> // OK
- * FooOrBar<{ foo: "test",  bar: 1 }> // Error
+ * const a: FooOrBar = { foo: "test" } // OK
+ * const b: FooOrBar = { bar: 1 } // OK
+ * const c: FooOrBar = { foo: "test",  bar: 1 }// Error
  * ```
  */
 type XOR<T, U> = T | U extends object
@@ -26,9 +26,13 @@ type Assoc<P extends string[], D> = P extends [
   ? { [K in F]: Assoc<R extends string[] ? R : never, D> }
   : D;
 
+export type Recur<R> = {
+  [T in keyof R]: { [S in keyof R[T]]: R[T][S] };
+};
+
+// Results
+
 type MovieDetailsResult = {
-  adult: boolean;
-  backdrop_path: string;
   belongs_to_collection: null;
   budget: number;
   genres: Array<{
@@ -36,13 +40,7 @@ type MovieDetailsResult = {
     name: string;
   }>;
   homepage: string;
-  id: number;
   imdb_id: `tt${number}`;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
   production_companies: Array<{
     id: number;
     logo_path: string;
@@ -53,7 +51,6 @@ type MovieDetailsResult = {
     iso_3166_1: string;
     name: string;
   }>;
-  release_date: string;
   revenue: number;
   runtime: number;
   spoken_languages: Array<{
@@ -69,56 +66,59 @@ type MovieDetailsResult = {
     | "Released"
     | "Canceled";
   tagline: string;
-  title: string;
   video: boolean;
+} & Omit<MovieDifferent, "media_type"> &
+  MovieAndTVShared;
+type MovieDifferent = {
+  media_type: "movie";
+  title: string;
+  original_title: string;
+  release_date: string;
+};
+type MovieAndTVShared = {
+  ault: boolean;
+  backdrop_path: string;
+  id: number;
+  original_language: string;
+  overview: string;
+  poster_path: string;
+  genre_ids: number[];
+  popularity: number;
   vote_average: number;
   vote_count: number;
 };
+
+type TVDifferent = {
+  media_type: "tv";
+  name: string;
+  original_name: string;
+  first_air_date: string;
+  origin_country: string[];
+};
+
+type SearchResult<T> = {
+  page: number;
+  results: Array<T>;
+  total_pages: number;
+  total_results: number;
+};
+type SearchMulitResult = SearchResult<
+  XOR<MovieDifferent, TVDifferent> & MovieAndTVShared
+>;
+type SearchTVResult = SearchResult<
+  Omit<TVDifferent, "media_type"> & MovieAndTVShared
+>;
+type SearchMovieResult = {};
+
+// Params
+
 type MovieDetailsParams = {
   append_to_response?: string;
   language?: string;
   id: number;
 };
-
-type SearchMulitResult = {
-  page: number;
-  results: Array<
-    XOR<
-      {
-        media_type: "movie";
-        title: string;
-        original_title: string;
-        release_date: string;
-      },
-      {
-        media_type: "tv";
-        name: string;
-        original_name: string;
-        first_air_date: string;
-        origin_country: string[];
-      }
-    > & {
-      ault: boolean;
-      backdrop_path: string;
-      id: number;
-      original_language: string;
-      overview: string;
-      poster_path: string;
-      genre_ids: number[];
-      popularity: number;
-      vote_average: number;
-      vote_count: number;
-    }
-  >;
-  total_pages: number;
-  total_results: number;
-};
 type SearchMulitParams = {};
-
-type SearchMovieResult = {};
 type SearchMovieParams = {};
-
-type SearchTVResult = {};
 type SearchTVParams = {};
 
 export type RestInterface = Assoc<
@@ -128,7 +128,3 @@ export type RestInterface = Assoc<
   Assoc<["search", "multi"], (params: SearchMulitParams) => SearchMulitResult> &
   Assoc<["search", "movie"], (params: SearchMovieParams) => SearchMovieResult> &
   Assoc<["search", "tv"], (params: SearchTVParams) => SearchTVResult>;
-
-export type Recur<R> = {
-  [T in keyof R]: { [S in keyof R[T]]: R[T][S] };
-};

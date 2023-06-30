@@ -108,7 +108,9 @@ type SearchMulitResult = SearchResult<
 type SearchTVResult = SearchResult<
   Omit<TVDifferent, "media_type"> & MovieAndTVShared
 >;
-type SearchMovieResult = {};
+type SearchMovieResult = SearchResult<
+  Omit<MovieDifferent, "media_type"> & MovieAndTVShared
+>;
 
 // Params
 

@@ -6,13 +6,13 @@ This project originated from [is-plain-object](https://github.com/jonschlinkert/
 
 ## Usage
 
-with ES modules:
+With ES modules:
 
 ```ts
 import { isPlainObject } from "is-plain-object";
 ```
 
-**true** when created by the `Object` constructor, or Object.create(null).
+**true** when created by the `Object` constructor, or `Object.create(null)`.
 
 ```ts
 isPlainObject(Object.create({})); // => true

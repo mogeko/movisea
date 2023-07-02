@@ -1,5 +1,10 @@
-function isObject(o: object) {
-  return Object.prototype.toString.call(o) === "[object Object]";
+/**
+ * Returns true if the given value is an object.
+ *
+ * @param value The value to test
+ */
+function isObject(value: any) {
+  return value !== null && typeof value === "object";
 }
 
 /**
@@ -11,14 +16,13 @@ function isObject(o: object) {
  * ```ts
  * isPlainObject(Object.create({})); // => true
  * isPlainObject(Object.create(Object.prototype)); // => true
- * isPlainObject({foo: 'bar'}); // => true
+ * isPlainObject({foo: "bar"}); // => true
  * isPlainObject({}); // => true
- * isPlainObject(null); // => true
- * isPlainObject(1); // => false
- * isPlainObject(['foo', 'bar']); // => false
+ * isPlainObject(Object.create(null)); // => true
+ *
+ * isPlainObject(["foo", "bar"]); // => false
  * isPlainObject([]); // => false
  * isPlainObject(new Foo); // => false
- * isPlainObject(Object.create(null)); // => false
  * ```
  */
 export function isPlainObject(o: object): o is Record<PropertyKey, unknown> {
@@ -39,4 +43,28 @@ export function isPlainObject(o: object): o is Record<PropertyKey, unknown> {
 
   // Most likely a plain Object
   return true;
+}
+
+if (import.meta.vitest) {
+  const { describe, it, expect } = await import("vitest");
+
+  describe("isPlainObject", () => {
+    it("returns true for plain objects", () => {
+      expect(isPlainObject(Object.create({}))).toBe(true);
+      expect(isPlainObject(Object.create(Object.prototype))).toBe(true);
+      expect(isPlainObject({ foo: "bar" })).toBe(true);
+      expect(isPlainObject({})).toBe(true);
+      expect(isPlainObject(Object.create(null))).toBe(true);
+    });
+
+    it("returns false for non-plain objects", () => {
+      expect(isPlainObject(["foo", "bar"])).toBe(false);
+      expect(isPlainObject([])).toBe(false);
+      expect(isPlainObject(new Date())).toBe(false);
+      // @ts-expect-error
+      expect(isPlainObject(null)).toBe(false);
+      // @ts-expect-error
+      expect(isPlainObject(1)).toBe(false);
+    });
+  });
 }

@@ -1,11 +1,39 @@
 {
   "name": "is-plain-object",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "type": "module",
   "description": "Returns true if an object was created by the `Object` constructor, or Object.create(null)",
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/movisea.git",
+    "directory": "packages/tmdb-api"
+  },
+  "homepage": "https://github.com/mogeko/movisea/tree/master/packages/tmdb-api#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/movisea/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "keywords": [
+    "type",
+    "check",
+    "is",
+    "plain",
+    "object"
+  ],
+  "license": "MIT",
   "main": "dist/is-plain-object.js",
   "types": "dist/is-plain-object.d.ts",
+  "files": [
+    "!dist/metafile-*.json",
+    "!dist/*.map",
+    "dist",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -14,9 +42,6 @@
     "lint": "prettier --check \"src/**/*.{js,ts}\" --cache",
     "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "20.2.5",
     "@vitest/coverage-v8": "^0.32.2",

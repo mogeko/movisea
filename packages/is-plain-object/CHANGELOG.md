@@ -1,5 +1,11 @@
 # is-plain-object
 
+## 0.0.2
+
+### Patch Changes
+
+- [#28](https://github.com/mogeko/movisea/pull/28) [`f02efa6`](https://github.com/mogeko/movisea/commit/f02efa69403ef02284b49ff0e0e7b050a9b4c99c) Thanks [@mogeko](https://github.com/mogeko)! - Rename to `@mogeko/is-plain-object`
+
 ## 0.0.1
 
 ### Patch Changes

@@ -52,7 +52,7 @@
     "release": "pnpm publish --access public"
   },
   "dependencies": {
-    "is-plain-object": "^0.0.1",
+    "@mogeko/is-plain-object": "workspace:^",
     "universal-user-agent": "^7.0.1",
     "url-template": "^3.1.0"
   },

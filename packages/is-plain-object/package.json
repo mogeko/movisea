@@ -1,7 +1,7 @@
 {
-  "name": "is-plain-object",
+  "name": "@mogeko/is-plain-object",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "Returns true if an object was created by the `Object` constructor, or Object.create(null)",
   "author": {

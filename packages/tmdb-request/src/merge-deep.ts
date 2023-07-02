@@ -1,9 +1,9 @@
 // @ts-ignore
-import { isPlainObject } from "is-plain-object";
+import { isPlainObject } from "@mogeko/is-plain-object";
 
 export function mergeDeep<
-  L extends Record<string, any>,
-  R extends Record<string, any>
+  L extends Record<PropertyKey, any>,
+  R extends Record<PropertyKey, any>
 >(lObj: L, rObj: R): L & R {
   const result = Object.assign({}, lObj) as any;
 

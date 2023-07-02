@@ -1,3 +1,15 @@
+// Copyright (c) 2023 Zheng Junyi. All rights reserved. Licensed under the MIT license.
+
+/**
+ * This module provides a function to check if a value is a plain object.
+ *
+ * This project originated from jonschlinkert/is-plain-object (released under MIT license).
+ *
+ * @see {@link https://github.com/jonschlinkert/is-plain-object}
+ *
+ * @packageDocumentation
+ */
+
 /**
  * Returns true if the given value is an object.
  *

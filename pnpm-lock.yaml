@@ -263,9 +263,9 @@ importers:
 
   packages/tmdb-request:
     dependencies:
-      is-plain-object:
-        specifier: ^5.0.0
-        version: 5.0.0
+      '@mogeko/is-plain-object':
+        specifier: workspace:^
+        version: link:../is-plain-object
       universal-user-agent:
         specifier: ^7.0.1
         version: 7.0.1
@@ -10037,6 +10037,7 @@ packages:
   /is-plain-object@5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /is-regex@1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}

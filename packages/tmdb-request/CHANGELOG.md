@@ -1,5 +1,14 @@
 # tmdb-request
 
+## 1.2.3
+
+### Patch Changes
+
+- [#28](https://github.com/mogeko/movisea/pull/28) [`f02efa6`](https://github.com/mogeko/movisea/commit/f02efa69403ef02284b49ff0e0e7b050a9b4c99c) Thanks [@mogeko](https://github.com/mogeko)! - Replace `is-plain-object` by our own implemented
+
+- Updated dependencies [[`f02efa6`](https://github.com/mogeko/movisea/commit/f02efa69403ef02284b49ff0e0e7b050a9b4c99c)]:
+  - @mogeko/is-plain-object@0.0.2
+
 ## 1.2.2
 
 ### Patch Changes

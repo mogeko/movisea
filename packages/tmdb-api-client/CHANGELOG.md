@@ -1,5 +1,12 @@
 # tmdbs-api-client
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`f02efa6`](https://github.com/mogeko/movisea/commit/f02efa69403ef02284b49ff0e0e7b050a9b4c99c)]:
+  - tmdb-request@1.2.3
+
 ## 0.1.1
 
 ### Patch Changes

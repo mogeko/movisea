@@ -1,5 +1,5 @@
 ---
-"@mogeko/tmdbs-api": patch
+"@mogeko/tmdb-api": patch
 ---
 
-Rename to `@mogeko/tmdb-api`
+Rename `tmdbs-api-client` to `@mogeko/tmdb-api`

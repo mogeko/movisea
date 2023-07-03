@@ -1,4 +1,4 @@
-# tmdbs-api
+# tmdb-api
 
 ## 0.1.2
 

@@ -1,4 +1,4 @@
-# tmdbs-api-client
+# tmdbs-api
 
 ## 0.1.2
 

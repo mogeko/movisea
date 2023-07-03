@@ -1,5 +1,5 @@
 {
-  "name": "tmdbs-api-client",
+  "name": "@mogeko/tmdbs-api",
   "version": "0.1.2",
   "private": false,
   "type": "module",

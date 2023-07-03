@@ -1,4 +1,3 @@
-// @ts-ignore
 import { isPlainObject } from "@mogeko/is-plain-object";
 
 export function mergeDeep<

@@ -1,11 +1,11 @@
-export function splitObj(obj: Record<string, any>, keys: string[]) {
-  const rest = Object.assign({}, obj);
-  const result = Object.keys(obj).reduce((acc, k) => {
-    if (keys.includes(k)) (acc[k] = obj[k]), delete rest[k];
+export function splitObj(obj: Record<PropertyKey, any>, keys: string[]) {
+  const rObj = Object.assign({}, obj);
+  const lObj = Object.keys(obj).reduce((acc, k) => {
+    if (keys.includes(k)) (acc[k] = obj[k]), delete rObj[k];
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<PropertyKey, any>);
 
-  return [result, rest] as const;
+  return [lObj, rObj] as const;
 }
 
 if (import.meta.vitest) {

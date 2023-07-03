@@ -43,7 +43,7 @@
     "fmt": "prettier --write \"src/**/*.{js,ts}\" --cache"
   },
   "devDependencies": {
-    "@types/node": "20.2.5",
+    "@types/node": "20.3.3",
     "@vitest/coverage-v8": "^0.32.2",
     "tsconfig": "workspace:*",
     "tsup": "^7.1.0",

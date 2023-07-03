@@ -1,4 +1,4 @@
-import { request } from "tmdb-request";
+import { request } from "@mogeko/tmdb-request";
 
 import { tokens } from "@/config/tokens";
 

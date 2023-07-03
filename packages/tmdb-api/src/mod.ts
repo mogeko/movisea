@@ -1,7 +1,7 @@
 import { ENDPOINTS } from "@/endpoints";
 import type { Recur, RestInterface } from "@/types";
-import { parser, request, type Options } from "tmdb-request";
-import { mergeDeep } from "tmdb-request/merge-deep";
+import { parser, request, type Options } from "@mogeko/tmdb-request";
+import { mergeDeep } from "@mogeko/tmdb-request/merge-deep";
 
 export class TMDB {
   private _defaultOpts: Options;

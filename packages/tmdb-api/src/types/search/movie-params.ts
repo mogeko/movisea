@@ -1,1 +1,1 @@
-export type SearchMovieParams = {};
+export type SearchMovieParams = any; // TODO: Implement

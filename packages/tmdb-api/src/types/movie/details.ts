@@ -1,3 +1,5 @@
+import { Coutry, ISO_639_1, ISO_3166_1, Language } from "@/types/shared";
+
 export type MovieDifferent = {
   media_type: "movie";
   title: string;
@@ -18,17 +20,17 @@ export type MovieDetailsResult = {
     id: number;
     logo_path: string;
     name: string;
-    origin_country: string;
+    origin_country: Coutry;
   }>;
   production_countries: Array<{
-    iso_3166_1: string;
+    iso_3166_1: ISO_3166_1;
     name: string;
   }>;
   revenue: number;
   runtime: number;
   spoken_languages: Array<{
     english_name: string;
-    iso_639_1: string;
+    iso_639_1: ISO_639_1;
     name: string;
   }>;
   status:
@@ -47,7 +49,7 @@ export type MovieAndTVShared = {
   ault: boolean;
   backdrop_path: string;
   id: number;
-  original_language: string;
+  original_language: Language;
   overview: string;
   poster_path: string;
   genre_ids: number[];

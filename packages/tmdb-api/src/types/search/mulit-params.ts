@@ -1,1 +1,1 @@
-export type SearchMulitParams = {};
+export type SearchMulitParams = any; // TODO: Implement

@@ -1,6 +1,6 @@
 export const ENDPOINTS = {
   account: {
-    details: ["GET /account/{id}", {}],
+    details: ["GET /account/{id}?session_id={session_id}", {}],
     addFavorite: ["POST /account/{id}/favorite?session_id={session_id}", {}],
     addWatchlist: ["POST /account/{id}/watchlist?session_id={session_id}", {}],
     favoriteMovies: [

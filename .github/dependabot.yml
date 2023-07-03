@@ -8,6 +8,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
-  # dependabot does not support pnpm yet.
-  # Track the issue: https://github.com/dependabot/dependabot-core/issues/1736
+  # Enable version updates for PNPM
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"

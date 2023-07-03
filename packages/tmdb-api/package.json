@@ -1,6 +1,6 @@
 {
   "name": "@mogeko/tmdb-api",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "type": "module",
   "description": "A HTTP client for TMDB APIs",

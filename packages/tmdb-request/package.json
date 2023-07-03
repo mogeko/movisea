@@ -1,6 +1,6 @@
 {
   "name": "@mogeko/tmdb-request",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "type": "module",
   "description": "A simple wrapper for TMDB APIs",

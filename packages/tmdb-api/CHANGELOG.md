@@ -1,5 +1,11 @@
 # tmdb-api
 
+## 0.1.3
+
+### Patch Changes
+
+- [#31](https://github.com/mogeko/movisea/pull/31) [`cc1aeaa`](https://github.com/mogeko/movisea/commit/cc1aeaa27fae98a1c8dea356e872cd72c0391da9) Thanks [@mogeko](https://github.com/mogeko)! - Rename `tmdbs-api-client` to `@mogeko/tmdb-api`
+
 ## 0.1.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # tmdb-request
 
+## 1.2.4
+
+### Patch Changes
+
+- [#33](https://github.com/mogeko/movisea/pull/33) [`8a7c476`](https://github.com/mogeko/movisea/commit/8a7c4767fc817e495792e1ce99fbc12e6f4722b5) Thanks [@mogeko](https://github.com/mogeko)! - Rename `tmdb-request` to `@mogeko/tmdb-request`
+
 ## 1.2.3
 
 ### Patch Changes

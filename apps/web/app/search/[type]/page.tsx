@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { request } from "tmdb-request";
+import { request } from "@mogeko/tmdb-request";
 
 import { tokens } from "@/config/tokens";
 import type { XOR } from "@/lib/utils";

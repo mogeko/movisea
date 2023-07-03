@@ -117,6 +117,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.1.1
         version: 3.1.1(react-hook-form@7.45.1)
+      '@mogeko/tmdb-request':
+        specifier: workspace:^
+        version: link:../../packages/tmdb-request
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.4)(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
@@ -174,9 +177,6 @@ importers:
       tailwind-merge:
         specifier: ^1.13.2
         version: 1.13.2
-      tmdb-request:
-        specifier: workspace:^
-        version: link:../../packages/tmdb-request
       zod:
         specifier: ^3.21.4
         version: 3.21.4
@@ -235,7 +235,7 @@ importers:
 
   packages/tmdb-api:
     dependencies:
-      tmdb-request:
+      '@mogeko/tmdb-request':
         specifier: workspace:^
         version: link:../tmdb-request
     devDependencies:

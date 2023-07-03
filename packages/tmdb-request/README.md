@@ -9,7 +9,7 @@ It use [RFC 6570 URI Template specification](https://www.rfc-editor.org/rfc/rfc6
 By install with [npm](https://www.npmjs.com/package/npm), [yarn](https://yarnpkg.com), [pnpm](https://pnpm.io) or any other package manager that you use.
 
 ```shell
-pnpm add tmdb-request
+pnpm add @mogeko/tmdb-request
 ```
 
 > **Note**
@@ -31,7 +31,7 @@ This library 1:1 mapping of REST API endpoints in the [The Movie Database API Re
 For example, to get the details of a movie, you would do:
 
 ```js
-import { request } from "tmdb-request";
+import { request } from "@mogeko/tmdb-request";
 
 // The default method is GET, so you can omit it.
 const result = request("/movie/{movie_id}?language={lang}", {
@@ -52,7 +52,7 @@ You can also use `POST` request to interact with TMDB Server.
 For example, to rate a movie, you would do:
 
 ```js
-import { request } from "tmdb-request";
+import { request } from "@mogeko/tmdb-request";
 
 const result = request("POST /movie/{movie_id}/rating", {
   headers: {
@@ -73,7 +73,7 @@ If you prefer to use other HTTP client, like [axios](https://axios-http.com).
 You can use `parser` function to only parse the URL.
 
 ```js
-import { parser } from "tmdb-request";
+import { parser } from "@mogeko/tmdb-request";
 
 parser("GET /movie/{movie_id}?language={lang}", {
   headers: {
@@ -110,7 +110,7 @@ In this case, we will use the `endpoint.url` as the `route` parameter, so the `u
 This feature is implemented by TypeScript's [function overloading](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads).
 
 ```js
-import { parser, request } from "tmdb-request";
+import { parser, request } from "@mogeko/tmdb-request";
 
 // For request function
 request({

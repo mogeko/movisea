@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
+    "@mogeko/tmdb-request": "workspace:^",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -31,7 +32,6 @@
     "react-hook-form": "^7.45.1",
     "react-icons": "^4.10.1",
     "tailwind-merge": "^1.13.2",
-    "tmdb-request": "workspace:^",
     "zod": "^3.21.4"
   },
   "devDependencies": {

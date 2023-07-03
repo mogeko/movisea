@@ -42,7 +42,7 @@
     "release": "pnpm publish --access public"
   },
   "dependencies": {
-    "tmdb-request": "workspace:^"
+    "@mogeko/tmdb-request": "workspace:^"
   },
   "devDependencies": {
     "@types/node": "20.2.5",

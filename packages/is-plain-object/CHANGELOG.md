@@ -1,5 +1,13 @@
 # is-plain-object
 
+## 0.0.3
+
+### Patch Changes
+
+- [#41](https://github.com/mogeko/movisea/pull/41) [`c7304c1`](https://github.com/mogeko/movisea/commit/c7304c10629a443c00465c41e1d32ca1c4de9774) Thanks [@mogeko](https://github.com/mogeko)! - Upgrade dependencies
+
+  - bump `@types/node` from `20.2.5` to `20.3.3` ([#37](https://github.com/mogeko/movisea/pull/37))
+
 ## 0.0.2
 
 ### Patch Changes

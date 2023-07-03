@@ -1,5 +1,22 @@
 # tmdb-api
 
+## 0.1.5
+
+### Patch Changes
+
+- [#41](https://github.com/mogeko/movisea/pull/41) [`45b3dc9`](https://github.com/mogeko/movisea/commit/45b3dc97d6067f26f38e43ebdef21170fc482f59) Thanks [@mogeko](https://github.com/mogeko)! - Add types for account
+
+- [#41](https://github.com/mogeko/movisea/pull/41) [`0d6e608`](https://github.com/mogeko/movisea/commit/0d6e608d1b855c774c62e78c8a67a677f2b4d8ea) Thanks [@mogeko](https://github.com/mogeko)! - Add full endpoints about account
+
+- [#41](https://github.com/mogeko/movisea/pull/41) [`8742e1f`](https://github.com/mogeko/movisea/commit/8742e1fd979d9726b677c06f62f67371b8bfee97) Thanks [@mogeko](https://github.com/mogeko)! - Refactoring type system, and reduce the degree of coupling.
+
+- [#41](https://github.com/mogeko/movisea/pull/41) [`c7304c1`](https://github.com/mogeko/movisea/commit/c7304c10629a443c00465c41e1d32ca1c4de9774) Thanks [@mogeko](https://github.com/mogeko)! - Upgrade dependencies
+
+  - bump `@types/node` from `20.2.5` to `20.3.3` ([#37](https://github.com/mogeko/movisea/pull/37))
+
+- Updated dependencies [[`c7304c1`](https://github.com/mogeko/movisea/commit/c7304c10629a443c00465c41e1d32ca1c4de9774)]:
+  - @mogeko/tmdb-request@1.2.5
+
 ## 0.1.4
 
 ### Patch Changes

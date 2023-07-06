@@ -1,9 +1,9 @@
-import type { Context, RequestParams } from "@/defaults";
+import type { Context, DefaultParams } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
-export function parse(defaults: Options) {
+export function parse(defaults: DefaultParams) {
   return (route?: string, opts: Options = {}): Context => {
     // replace :varname with {varname} to make it RFC 6570 compatible
     const _route = (route || "/").replace(/:([a-z]\w+)/g, "{$1}");
@@ -23,7 +23,7 @@ function splitParams(opts: Options): [Context, ExpandParams] {
 
 type ExpandParams = Parameters<Template["expand"]>[0];
 /** The `opts` parameter of {@link request} and {@link parser}.*/
-export type Options = RequestParams & ExpandParams;
+export type Options = DefaultParams & ExpandParams;
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");

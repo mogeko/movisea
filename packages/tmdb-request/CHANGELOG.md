@@ -1,5 +1,19 @@
 # tmdb-request
 
+## 1.3.0
+
+### Minor Changes
+
+- [#43](https://github.com/mogeko/movisea/pull/43) [`f1edd70`](https://github.com/mogeko/movisea/commit/f1edd705fa368d3d5dbc5f4cfbbff93c4c972abd) Thanks [@mogeko](https://github.com/mogeko)! - Compatible with `:varname` syntax for url template
+
+### Patch Changes
+
+- [#43](https://github.com/mogeko/movisea/pull/43) [`67fad93`](https://github.com/mogeko/movisea/commit/67fad93720aa6d4716eaa5a312c11823152dec78) Thanks [@mogeko](https://github.com/mogeko)! - Extend `splitObj` function by paradigm
+
+- [#43](https://github.com/mogeko/movisea/pull/43) [`0c0916b`](https://github.com/mogeko/movisea/commit/0c0916bce1db46eee04f0dc5802fcb280294beb5) Thanks [@mogeko](https://github.com/mogeko)! - Adjust the type system
+
+- [#43](https://github.com/mogeko/movisea/pull/43) [`aa1fa17`](https://github.com/mogeko/movisea/commit/aa1fa176ffb4a14513b9b6dd1809e89f0b4d81b6) Thanks [@mogeko](https://github.com/mogeko)! - Write TSDoc for all exported interfaces and types
+
 ## 1.2.5
 
 ### Patch Changes

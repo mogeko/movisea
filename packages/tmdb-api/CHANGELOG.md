@@ -1,5 +1,12 @@
 # tmdb-api
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`f1edd70`](https://github.com/mogeko/movisea/commit/f1edd705fa368d3d5dbc5f4cfbbff93c4c972abd), [`67fad93`](https://github.com/mogeko/movisea/commit/67fad93720aa6d4716eaa5a312c11823152dec78), [`0c0916b`](https://github.com/mogeko/movisea/commit/0c0916bce1db46eee04f0dc5802fcb280294beb5), [`aa1fa17`](https://github.com/mogeko/movisea/commit/aa1fa176ffb4a14513b9b6dd1809e89f0b4d81b6)]:
+  - @mogeko/tmdb-request@1.3.0
+
 ## 0.1.5
 
 ### Patch Changes

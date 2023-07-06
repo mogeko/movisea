@@ -17,8 +17,8 @@ export function parse(defaults: Options) {
   };
 }
 
-function splitParams(opts: Options): readonly [Context, ExpandParams] {
-  return splitObj(opts, ["method", "baseUrl", "url", "headers"]) as any;
+function splitParams(opts: Options): [Context, ExpandParams] {
+  return splitObj(opts, ["method", "baseUrl", "url", "headers"]);
 }
 
 type ExpandParams = Parameters<Template["expand"]>[0];

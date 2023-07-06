@@ -4,7 +4,7 @@ export function mergeDeep<
   L extends Record<PropertyKey, any>,
   R extends Record<PropertyKey, any>
 >(lObj: L, rObj: R): L & R {
-  const result = Object.assign({}, lObj) as any;
+  const result: Record<PropertyKey, any> = Object.assign({}, lObj);
 
   Object.keys(rObj).forEach((key) => {
     if (isPlainObject(rObj[key])) {

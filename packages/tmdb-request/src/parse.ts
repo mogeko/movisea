@@ -1,28 +1,30 @@
-import type { RequestParams, WithDefaults } from "@/defaults";
+import type { Context, DefaultParams } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
-export function parse(defaults: WithDefaults<Options>) {
-  return (route: string, opts: Options = {}) => {
+export function parse(defaults: DefaultParams) {
+  return (route?: string, opts: Options = {}): Context => {
+    // replace :varname with {varname} to make it RFC 6570 compatible
+    const _route = (route || "/").replace(/:([a-z]\w+)/g, "{$1}");
     const [params, options] = splitParams(mergeDeep(defaults, opts));
-    const [method, path] = route.trim().split(" ");
+    const [method, path] = _route.trim().split(" ");
 
     return Object.assign(params, {
       method: path ? method.toUpperCase() : defaults.method,
-      baseUrl: params.baseUrl ?? defaults.baseUrl,
       url: parseTemplate(path ?? method).expand(options),
     });
   };
 }
 
-function splitParams(opts: Options): readonly [RequestParams, ExpandParams] {
+function splitParams(opts: Options): [Context, ExpandParams] {
   return splitObj(opts, ["method", "baseUrl", "url", "headers"]);
 }
 
+/** Any object that can be expanded into a URL */
 type ExpandParams = Parameters<Template["expand"]>[0];
 /** The `opts` parameter of {@link request} and {@link parser}.*/
-export type Options = RequestParams & ExpandParams;
+export type Options = DefaultParams & ExpandParams;
 
 if (import.meta.vitest) {
   const { describe, it, expect } = await import("vitest");
@@ -46,14 +48,14 @@ if (import.meta.vitest) {
     it("should parse route", () => {
       expect(typeof parser).toBe("function");
 
-      const context1 = parser("/foo/{bar}", { bar: "baz" });
+      const context = parser("/foo/{bar}", { bar: "baz" });
 
-      expect(context1.url).toEqual("/foo/baz");
-      expect(context1.method).toEqual("GET");
+      expect(context.url).toEqual("/foo/baz");
+      expect(context.method).toEqual("GET");
 
-      const context2 = parser("POST /foo/{bar}", { bar: "baz" });
+      expect(parser("POST /foo/{bar}", { bar: "baz" }).method).toEqual("POST");
 
-      expect(context2.method).toEqual("POST");
+      expect(parser().url).toEqual("/");
     });
 
     it("should parse route with custom baseUrl", () => {
@@ -66,6 +68,10 @@ if (import.meta.vitest) {
       expect(
         parser("/foo/{bar}", { bar: "baz", baseUrl: "https://foo.bar" }).baseUrl
       ).toEqual("https://foo.bar");
+    });
+
+    it("should replace :varname with {varname}", () => {
+      expect(parser("/foo/:bar", { bar: "baz" }).url).toEqual("/foo/baz");
     });
   });
 }

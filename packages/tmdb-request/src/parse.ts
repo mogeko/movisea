@@ -1,23 +1,22 @@
-import type { RequestParams, WithDefaults } from "@/defaults";
+import type { Context, RequestParams } from "@/defaults";
 import { mergeDeep } from "@/merge-deep";
 import { splitObj } from "@/split-obj";
 import { parseTemplate, type Template } from "url-template";
 
-export function parse(defaults: WithDefaults<Options>) {
-  return (route: string, opts: Options = {}) => {
+export function parse(defaults: Options) {
+  return (route?: string, opts: Options = {}): Context => {
     const [params, options] = splitParams(mergeDeep(defaults, opts));
-    const [method, path] = route.trim().split(" ");
+    const [method, path] = (route || "/").trim().split(" ");
 
     return Object.assign(params, {
       method: path ? method.toUpperCase() : defaults.method,
-      baseUrl: params.baseUrl ?? defaults.baseUrl,
       url: parseTemplate(path ?? method).expand(options),
     });
   };
 }
 
-function splitParams(opts: Options): readonly [RequestParams, ExpandParams] {
-  return splitObj(opts, ["method", "baseUrl", "url", "headers"]);
+function splitParams(opts: Options): readonly [Context, ExpandParams] {
+  return splitObj(opts, ["method", "baseUrl", "url", "headers"]) as any;
 }
 
 type ExpandParams = Parameters<Template["expand"]>[0];
@@ -46,14 +45,14 @@ if (import.meta.vitest) {
     it("should parse route", () => {
       expect(typeof parser).toBe("function");
 
-      const context1 = parser("/foo/{bar}", { bar: "baz" });
+      const context = parser("/foo/{bar}", { bar: "baz" });
 
-      expect(context1.url).toEqual("/foo/baz");
-      expect(context1.method).toEqual("GET");
+      expect(context.url).toEqual("/foo/baz");
+      expect(context.method).toEqual("GET");
 
-      const context2 = parser("POST /foo/{bar}", { bar: "baz" });
+      expect(parser("POST /foo/{bar}", { bar: "baz" }).method).toEqual("POST");
 
-      expect(context2.method).toEqual("POST");
+      expect(parser().url).toEqual("/");
     });
 
     it("should parse route with custom baseUrl", () => {
@@ -66,6 +65,10 @@ if (import.meta.vitest) {
       expect(
         parser("/foo/{bar}", { bar: "baz", baseUrl: "https://foo.bar" }).baseUrl
       ).toEqual("https://foo.bar");
+    });
+
+    it("should replace :varname with {varname}", () => {
+      expect(parser("/foo/:bar", { bar: "baz" }).url).toEqual("/foo/baz");
     });
   });
 }

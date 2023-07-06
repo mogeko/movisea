@@ -15,7 +15,7 @@
  * @packageDocumentation
  */
 
-import { DEFAULTS, type RequestParams } from "@/defaults";
+import { DEFAULTS, type Context } from "@/defaults";
 import { parse, type Options } from "@/parse";
 
 /**
@@ -218,6 +218,6 @@ type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
  */
 export type Endpoint = RequiredFields<Options, "url">;
 /** The result of {@link parser}. */
-export type Context = RequiredFields<RequestParams, "baseUrl" | "url">;
+// export type Context = Required<RequestParams>;
 
-export type { Options }; // Re-export the `Options` type.
+export type { Options, Context }; // Re-export the `Options` type.

@@ -1,13 +1,13 @@
 import { getUserAgent } from "universal-user-agent";
 
-export const DEFAULTS = {
+export const DEFAULTS: RequestParams = {
   method: "GET",
   baseUrl: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
     "user-agent": getUserAgent(),
   },
-} as const;
+};
 
 export type RequestParams = {
   method?: "GET" | "POST" | "DELETE";
@@ -20,4 +20,5 @@ export type RequestParams = {
   url?: string;
 };
 
-export type WithDefaults<T> = typeof DEFAULTS & T;
+/** The result of {@link parser}. */
+export type Context = Required<RequestParams>;

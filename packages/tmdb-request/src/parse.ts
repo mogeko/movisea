@@ -21,6 +21,7 @@ function splitParams(opts: Options): [Context, ExpandParams] {
   return splitObj(opts, ["method", "baseUrl", "url", "headers"]);
 }
 
+/** Any object that can be expanded into a URL */
 type ExpandParams = Parameters<Template["expand"]>[0];
 /** The `opts` parameter of {@link request} and {@link parser}.*/
 export type Options = DefaultParams & ExpandParams;

@@ -10,9 +10,9 @@ describe("parser", () => {
 
     expect(context.method).toEqual("GET");
     expect(context.url).toEqual("/foo/baz");
-    expect(context.headers?.authorization).toEqual("xxx");
+    expect(context.headers.authorization).toEqual("xxx");
 
-    delete context.headers?.["user-agent"];
+    delete context.headers["user-agent"];
     expect(context).toMatchSnapshot();
   });
 
@@ -28,10 +28,10 @@ describe("parser", () => {
 
     expect(context.method).toEqual("POST");
     expect(context.url).toEqual("/foo/baz");
-    expect(context.headers?.authorization).toEqual("xxx");
-    expect(context.headers?.["content-type"]).toEqual("application/json");
+    expect(context.headers.authorization).toEqual("xxx");
+    expect(context.headers["content-type"]).toEqual("application/json");
 
-    delete context.headers?.["user-agent"];
+    delete context.headers["user-agent"];
     expect(context).toMatchSnapshot();
   });
 
@@ -39,5 +39,9 @@ describe("parser", () => {
     expect(
       parser("/foo/bar", { url: "This should be covered by route" }).url
     ).toEqual("/foo/bar");
+  });
+
+  it("should pass undefined values", () => {
+    expect(parser("/foo/{bar}", { baz: "bar" }).url).toEqual("/foo/");
   });
 });

@@ -5,8 +5,10 @@ import { parseTemplate, type Template } from "url-template";
 
 export function parse(defaults: Options) {
   return (route?: string, opts: Options = {}): Context => {
+    // replace :varname with {varname} to make it RFC 6570 compatible
+    const _route = (route || "/").replace(/:([a-z]\w+)/g, "{$1}");
     const [params, options] = splitParams(mergeDeep(defaults, opts));
-    const [method, path] = (route || "/").trim().split(" ");
+    const [method, path] = _route.trim().split(" ");
 
     return Object.assign(params, {
       method: path ? method.toUpperCase() : defaults.method,

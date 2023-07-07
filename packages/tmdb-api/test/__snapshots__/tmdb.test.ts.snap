@@ -5,7 +5,7 @@ exports[`Re-exported form tmdb-request > should parse 1`] = `
   "baseUrl": "https://api.themoviedb.org/3",
   "headers": {
     "accept": "application/json",
-    "authorization": "ONLY_FOR_TESTING",
+    "authorization": "Bearer ONLY_FOR_TESTING",
   },
   "method": "GET",
   "url": "/foo/baz",

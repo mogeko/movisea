@@ -7,7 +7,7 @@ import type { Recur, RestInterface } from "@/types/mod";
 export class TMDB {
   private _defaultOpts: Options;
 
-  constructor({ auth }: { auth: string }) {
+  constructor({ auth }: { auth: `Bearer ${string}` }) {
     this._defaultOpts = { headers: { authorization: auth } };
   }
 

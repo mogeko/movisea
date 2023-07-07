@@ -21,11 +21,11 @@ export type DefaultParams = {
   method?: "GET" | "POST" | "DELETE";
   headers?: {
     accept?: string;
-    authorization?: string;
+    authorization?: `Bearer ${string}`;
     "user-agent"?: string;
   } & Record<PropertyKey, any>;
-  baseUrl?: string;
-  url?: string;
+  baseUrl?: `https://${string}` | `http://${string}`;
+  url?: `/${string}` | `${Context["method"]} /${string}`;
 };
 
 /** The result of {@link parser}. */

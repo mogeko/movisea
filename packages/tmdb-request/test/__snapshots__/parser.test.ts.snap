@@ -18,7 +18,7 @@ exports[`parser > should parse route 1`] = `
   "baseUrl": "https://api.themoviedb.org/3",
   "headers": {
     "accept": "application/json",
-    "authorization": "xxx",
+    "authorization": "Bearer xxx",
   },
   "method": "GET",
   "url": "/foo/baz",

@@ -4,13 +4,13 @@ import { describe, expect, it } from "vitest";
 describe("parser", () => {
   it("should parse route", () => {
     const context = parser("/foo/{bar}", {
-      headers: { authorization: "xxx" },
+      headers: { authorization: "Bearer xxx" },
       bar: "baz",
     });
 
     expect(context.method).toEqual("GET");
     expect(context.url).toEqual("/foo/baz");
-    expect(context.headers.authorization).toEqual("xxx");
+    expect(context.headers.authorization).toEqual("Bearer xxx");
 
     delete context.headers["user-agent"];
     expect(context).toMatchSnapshot();
@@ -37,7 +37,7 @@ describe("parser", () => {
 
   it("should be covered by route", () => {
     expect(
-      parser("/foo/bar", { url: "This should be covered by route" }).url
+      parser("/foo/bar", { url: "/This/should/be/covered/by/route" }).url
     ).toEqual("/foo/bar");
   });
 

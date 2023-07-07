@@ -23,6 +23,7 @@ describe("parser", () => {
         authorization: "Bearer xxx",
         "content-type": "application/json",
       },
+      body: JSON.stringify({ foo: "bar" }),
       bar: "baz",
     });
 

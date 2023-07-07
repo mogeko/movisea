@@ -1,13 +1,14 @@
 import { getUserAgent } from "universal-user-agent";
 
-export const DEFAULTS: DefaultParams = {
+export const DEFAULTS = {
   method: "GET",
   baseUrl: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
     "user-agent": getUserAgent(),
   },
-};
+  body: null,
+} as const;
 
 /**
  * The type for parameters of {@link parse}. It will set the default
@@ -108,6 +109,7 @@ export type DefaultParams = {
    * @see {@link https://www.rfc-editor.org/rfc/rfc6570}
    */
   url?: `/${string}` | `${Context["method"]} /${string}`;
+  body?: BodyInit | null;
 };
 
 /** The result of {@link parser}. */

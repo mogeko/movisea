@@ -3,6 +3,7 @@
 exports[`parser > should parse endpoint 1`] = `
 {
   "baseUrl": "https://api.themoviedb.org/3",
+  "body": "{\\"foo\\":\\"bar\\"}",
   "headers": {
     "accept": "application/json",
     "authorization": "Bearer xxx",
@@ -16,6 +17,7 @@ exports[`parser > should parse endpoint 1`] = `
 exports[`parser > should parse route 1`] = `
 {
   "baseUrl": "https://api.themoviedb.org/3",
+  "body": null,
   "headers": {
     "accept": "application/json",
     "authorization": "Bearer xxx",

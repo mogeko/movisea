@@ -18,7 +18,7 @@ export function parse(defaults: DefaultParams) {
 }
 
 function splitParams(opts: Options): [Context, ExpandParams] {
-  return splitObj(opts, ["method", "baseUrl", "url", "headers"]);
+  return splitObj(opts, ["method", "headers", "baseUrl", "url", "body"]);
 }
 
 /** Any object that can be expanded into a URL */

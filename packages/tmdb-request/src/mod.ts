@@ -208,7 +208,7 @@ export function parser(route: string | Endpoint, opts?: Options) {
  * type Y = RequiredFields<X, "a" | "b">; // { a: string; b: number; c?: boolean; }
  * ```
  */
-type RequiredFields<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
+type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;
 /**
  * The type of the `endpoint` parameter.
  *

@@ -1,7 +1,7 @@
 import { TMDB } from "@/mod";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const tmdb = new TMDB({ auth: "ONLY_FOR_TESTING" });
+const tmdb = new TMDB({ auth: "Bearer ONLY_FOR_TESTING" });
 
 describe("Re-exported form tmdb-request", () => {
   beforeEach(() => (vi.resetAllMocks(), void 0));
@@ -30,7 +30,7 @@ describe("Re-exported form tmdb-request", () => {
 
     expect(context.method).toEqual("GET");
     expect(context.url).toEqual("/foo/baz");
-    expect(context.headers?.authorization).toEqual("ONLY_FOR_TESTING");
+    expect(context.headers?.authorization).toEqual("Bearer ONLY_FOR_TESTING");
 
     delete context.headers?.["user-agent"];
     expect(context).toMatchSnapshot();

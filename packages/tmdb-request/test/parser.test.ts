@@ -20,7 +20,7 @@ describe("parser", () => {
     const context = parser({
       url: "POST /foo/{bar}",
       headers: {
-        authorization: "xxx",
+        authorization: "Bearer xxx",
         "content-type": "application/json",
       },
       bar: "baz",
@@ -28,7 +28,7 @@ describe("parser", () => {
 
     expect(context.method).toEqual("POST");
     expect(context.url).toEqual("/foo/baz");
-    expect(context.headers.authorization).toEqual("xxx");
+    expect(context.headers.authorization).toEqual("Bearer xxx");
     expect(context.headers["content-type"]).toEqual("application/json");
 
     delete context.headers["user-agent"];

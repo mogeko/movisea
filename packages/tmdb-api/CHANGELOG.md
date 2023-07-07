@@ -1,5 +1,14 @@
 # tmdb-api
 
+## 0.1.7
+
+### Patch Changes
+
+- [#45](https://github.com/mogeko/movisea/pull/45) [`aafbc9f`](https://github.com/mogeko/movisea/commit/aafbc9f8ea85254fb7e69f303adaf9d3a7e0cc1c) Thanks [@mogeko](https://github.com/mogeko)! - Modify type signatures to adapt to more stringent `tmdb-request` input parameters
+
+- Updated dependencies [[`772e193`](https://github.com/mogeko/movisea/commit/772e193647ab4f1aeb405e6be250de1b197914cf), [`040bc76`](https://github.com/mogeko/movisea/commit/040bc768e8934c4e0bbb955c3e12340b2da41784)]:
+  - @mogeko/tmdb-request@1.3.1
+
 ## 0.1.6
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # tmdb-request
 
+## 1.3.1
+
+### Patch Changes
+
+- [#45](https://github.com/mogeko/movisea/pull/45) [`772e193`](https://github.com/mogeko/movisea/commit/772e193647ab4f1aeb405e6be250de1b197914cf) Thanks [@mogeko](https://github.com/mogeko)! - Add TSDoc for each known request parameter
+
+- [#45](https://github.com/mogeko/movisea/pull/45) [`040bc76`](https://github.com/mogeko/movisea/commit/040bc768e8934c4e0bbb955c3e12340b2da41784) Thanks [@mogeko](https://github.com/mogeko)! - Standardize the input of parameters by [Template Literal Types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html).
+
 ## 1.3.0
 
 ### Minor Changes

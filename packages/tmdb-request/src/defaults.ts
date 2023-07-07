@@ -109,6 +109,18 @@ export type DefaultParams = {
    * @see {@link https://www.rfc-editor.org/rfc/rfc6570}
    */
   url?: `/${string}` | `${Context["method"]} /${string}`;
+  /**
+   * The `body` for the request.
+   *
+   * @remarks
+   * The `body` of a request is the data sent by the client to your API.
+   *
+   * It is only used with `POST` methods, for other methods, it should be `null`.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request/body}
+   *
+   * @defaultValue null
+   */
   body?: BodyInit | null;
 };
 

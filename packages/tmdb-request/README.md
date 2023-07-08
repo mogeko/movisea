@@ -6,6 +6,8 @@ It use [RFC 6570 URI Template specification](https://www.rfc-editor.org/rfc/rfc6
 
 ## Installation
 
+### Node.js
+
 By install with [npm](https://www.npmjs.com/package/npm), [yarn](https://yarnpkg.com), [pnpm](https://pnpm.io) or any other package manager that you use.
 
 ```shell
@@ -17,6 +19,22 @@ pnpm add @mogeko/tmdb-request
 > Make sure you Node.js environment has [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) support. If not, you can use [node-fetch](https://www.npmjs.com/package/node-fetch) or [cross-fetch](https://www.npmjs.com/package/cross-fetch) to polyfill it.
 >
 > If you use framework like [Next.js](https://nextjs.org), you should not need to worry about this. They usually have an out-of-the-box Fetch API implementation.
+
+Then using this library / module in your code:
+
+```js
+import { parser, request } from "@mogeko/tmdb-request";
+```
+
+### Browser
+
+You can also load `@mogeko/tmdb-request` directly in your browser (from [esm.sh](https://esm.sh)):
+
+```html
+<script type="module">
+  import { parser, request } from "https://esm.sh/@mogeko/tmdb-request";
+</script>
+```
 
 ## Usage
 
@@ -31,8 +49,6 @@ This library 1:1 mapping of REST API endpoints in the [The Movie Database API Re
 For example, to get the details of a movie, you would do:
 
 ```js
-import { request } from "@mogeko/tmdb-request";
-
 // The default method is GET, so you can omit it.
 const result = request("/movie/{movie_id}?language={lang}", {
   headers: {
@@ -52,8 +68,6 @@ You can also use `POST` request to interact with TMDB Server.
 For example, to rate a movie, you would do:
 
 ```js
-import { request } from "@mogeko/tmdb-request";
-
 const result = request("POST /movie/{movie_id}/rating", {
   headers: {
     authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -73,8 +87,6 @@ If you prefer to use other HTTP client, like [axios](https://axios-http.com).
 You can use `parser` function to only parse the URL.
 
 ```js
-import { parser } from "@mogeko/tmdb-request";
-
 parser("GET /movie/{movie_id}?language={lang}", {
   headers: {
     authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -110,8 +122,6 @@ In this case, we will use the `endpoint.url` as the `route` parameter, so the `u
 This feature is implemented by TypeScript's [function overloading](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads).
 
 ```js
-import { parser, request } from "@mogeko/tmdb-request";
-
 // For request function
 request({
   url: "GET /movie/{movie_id}?language={lang}",

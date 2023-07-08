@@ -1,5 +1,15 @@
 # tmdb-request
 
+## 1.3.2
+
+### Patch Changes
+
+- [#47](https://github.com/mogeko/movisea/pull/47) [`02c2203`](https://github.com/mogeko/movisea/commit/02c22031e9f0fd9d286abfc51c6f125eb6914090) Thanks [@mogeko](https://github.com/mogeko)! - Keep `body` alway be `null` unless method is `POST`
+
+- [#47](https://github.com/mogeko/movisea/pull/47) [`14fc3a4`](https://github.com/mogeko/movisea/commit/14fc3a4829d4602b5935ced24ea13c3e451f4c04) Thanks [@mogeko](https://github.com/mogeko)! - Add a guide to load `@mogeko/tmdb-request` directly in the browser (from [esm.sh](https://esm.sh)).
+
+- [#47](https://github.com/mogeko/movisea/pull/47) [`9803a6e`](https://github.com/mogeko/movisea/commit/9803a6e53cc802d2bb0ca43ffd3ec657eabeca8d) Thanks [@mogeko](https://github.com/mogeko)! - Parse new requst parameter `body`
+
 ## 1.3.1
 
 ### Patch Changes

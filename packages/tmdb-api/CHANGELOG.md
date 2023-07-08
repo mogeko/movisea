@@ -1,5 +1,14 @@
 # tmdb-api
 
+## 0.1.8
+
+### Patch Changes
+
+- [#47](https://github.com/mogeko/movisea/pull/47) [`9803a6e`](https://github.com/mogeko/movisea/commit/9803a6e53cc802d2bb0ca43ffd3ec657eabeca8d) Thanks [@mogeko](https://github.com/mogeko)! - Parse new requst parameter `body`
+
+- Updated dependencies [[`02c2203`](https://github.com/mogeko/movisea/commit/02c22031e9f0fd9d286abfc51c6f125eb6914090), [`14fc3a4`](https://github.com/mogeko/movisea/commit/14fc3a4829d4602b5935ced24ea13c3e451f4c04), [`9803a6e`](https://github.com/mogeko/movisea/commit/9803a6e53cc802d2bb0ca43ffd3ec657eabeca8d)]:
+  - @mogeko/tmdb-request@1.3.2
+
 ## 0.1.7
 
 ### Patch Changes

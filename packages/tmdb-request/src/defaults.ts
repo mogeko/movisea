@@ -115,7 +115,7 @@ export type DefaultParams = {
    * @remarks
    * The `body` of a request is the data sent by the client to your API.
    *
-   * It is only used with `POST` methods, for other methods, it should be `null`.
+   * It will be sent as-is in a `POST` request. For `GET` and `DELETE` request, it will always be `null`.
    *
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request/body}
    *

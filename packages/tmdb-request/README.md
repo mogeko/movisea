@@ -101,6 +101,7 @@ It will result like:
 ```js
 {
   baseUrl: "https://api.themoviedb.org/3",
+  body: null,
   headers: {
     accept: "application/json",
     authorization: "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -153,9 +154,10 @@ Both `request` and `parser` function have the same arguments. The only differenc
 | Name           | Type        | Description                                                                                                                                                                                                                                                                            |
 | -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `route`        | `string`    | It has to be a string consisting of [URL Template](https://www.rfc-editor.org/rfc/rfc6570) and the request method, e.g. `GET /movie/{id}`. If it’s set to a URL, only the method defaults to GET.                                                                                      |
-| `opts.method`  | `string`    | Required unless route is set. supported `GET`, `POST` and `DELETE`. Defaults to `GET`.                                                                                                                                                                                                 |
+| `opts.method`  | `string`    | Required unless it was set in the `route` parameter. HTTP request method, but only `GET`, `POST` and `DELETE` are supported. Defaults to `GET`.                                                                                                                                        |
 | `opts.headers` | `object`    | Custom headers to send with the request. **Only `authorization` header is required.** By default, it will set `accept` to `application/json` and `user-agent` to suitably value.                                                                                                       |
-| `opts.baseUrl` | `string`    | The custom base URL for the request. It will be prepended to the URL (parsed from the `route` parameter) when we make the request.                                                                                                                                                     |
+| `opts.baseUrl` | `string`    | The custom base URL for the request. It will be prepended to the URL (parsed from the `route` parameter) when we make the request. Defaults to `https://api.themoviedb.org/3`.                                                                                                         |
+| `opts.body`    | `string`    | The request body. It will be sent as-is in a `POST` request. For `GET` and `DELETE` request, it will always be `null`. Defaults to `null`.                                                                                                                                             |
 | `otp.url`      | `undefined` | **Unrecommended.** To be honest, it is an useless field, because it will be [overwritten by the `route` parameter](https://github.com/mogeko/movisea/blob/7a171ca35aa9b4f53deb066f36edf457f3dd7189/packages/tmdb-request/test/parser.test.ts#L38) always. **You should NEVER use it**. |
 
 ### `request(endpoint)` and `parser(endpoint)`
@@ -166,6 +168,7 @@ Both `request` and `parser` function have the same arguments. The only differenc
 | `endpoint.baseUrl` | `string` | Same as the previous article.                                                                                                                                         |
 | `endpoint.method`  | `string` | Same as the previous article.                                                                                                                                         |
 | `endpoint.headers` | `object` | Same as the previous article.                                                                                                                                         |
+| `endpoint.body`    | `string` | Same as the previous article.                                                                                                                                         |
 
 ## License
 

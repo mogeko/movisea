@@ -1,13 +1,14 @@
 import { getUserAgent } from "universal-user-agent";
 
-export const DEFAULTS: DefaultParams = {
+export const DEFAULTS = {
   method: "GET",
   baseUrl: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
     "user-agent": getUserAgent(),
   },
-};
+  body: null,
+} as const;
 
 /**
  * The type for parameters of {@link parse}. It will set the default
@@ -108,6 +109,19 @@ export type DefaultParams = {
    * @see {@link https://www.rfc-editor.org/rfc/rfc6570}
    */
   url?: `/${string}` | `${Context["method"]} /${string}`;
+  /**
+   * The `body` for the request.
+   *
+   * @remarks
+   * The `body` of a request is the data sent by the client to your API.
+   *
+   * It will be sent as-is in a `POST` request. For `GET` and `DELETE` request, it will always be `null`.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request/body}
+   *
+   * @defaultValue null
+   */
+  body?: BodyInit | null;
 };
 
 /** The result of {@link parser}. */

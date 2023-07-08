@@ -28,6 +28,7 @@ describe("request", () => {
           authorization: "Bearer foo",
           "user-agent": getUserAgent(),
         },
+        body: null,
       }
     );
     expect(result).toEqual({ test: "test" });
@@ -46,6 +47,7 @@ describe("request", () => {
         authorization: "Bearer foo",
         "content-type": "application/json",
       },
+      body: JSON.stringify({ foo: "bar" }),
       language: "en-US",
       id: 10997,
     });
@@ -61,6 +63,7 @@ describe("request", () => {
           "content-type": "application/json",
           "user-agent": getUserAgent(),
         },
+        body: '{"foo":"bar"}',
       }
     );
     expect(result).toEqual({ test: "test" });
